@@ -1,23 +1,44 @@
-# 기존 학습 내용 점검
+# Foundation Review
 
-## 설명할 수 있음 A
-- 변수와 자료형 
-- 리스트와 딕셔너리 
-- if와 for의 차이
-- f-string 기본 사용법
+## 목적
+기존에 학습한 Python 문법과 pandas merge를 이용해
+고객·주문 데이터의 매출 구조를 분석한다.
 
-## 코드를 보지 않고 작성 가능 B
-- 리스트 반복 출력
-- 딕셔너리 items 순회
-- 간단한 함수 작성
+## 분석 질문
+1. 전체 매출과 주문 수는 얼마인가?
+2. 고객별 매출 차이는 어떠한가? 
+3. 지역별 매출은 어떻게 구성되는가? 
+4. 어떤 고객을 우선 관리해야 하는가? 
 
-## 참고자료가 있으면 가능 A
-- enumerate와 zip
-- pandas merge
-- groupby
+## 사용 기술
+- Python
+- pandas
+- matplotlib
+- SQLite 기초 SQL
+- Git
 
-## 아직 어려움 B
-- 예외 처리
-- 파일 저장
-- Notebook 전체 재실행
-- SQL 결과 검증
+## 데이터 단위
+- customers: 고객 1명당 1행
+- orders: 주문 1건당 1행
+
+## 실행 순서
+1. `01_python_basics_rebuild.ipynb`
+2. `02_customer_order_analysis.ipynb`
+
+## 주요 결과
+- 전체 매출: 890,000원
+- 주문 수: 6건
+- 고객 수: 3명
+- 매출 상위 고객: Park
+- 매출 상위 지역: Seoul
+
+## 한계
+- 예제 데이터로 실제 시장을 대표하지 않는다.
+- 고객 수와 주문 수가 작다.
+- 날짜 정보가 없어 월별 추세와 재구매 기간을 분석할 수 없다.
+
+## 다음 학습
+- pandas groupby·pivot_table
+- SQL GROUP BY
+- SQL JOIN
+- 결측치·중복 데이터 정제

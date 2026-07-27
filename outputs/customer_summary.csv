@@ -1,0 +1,4 @@
+﻿customer_id,customer,region,order_count,total_sales,average_sales
+3,Park,Seoul,2,430000,215000.0
+1,Kim,Seoul,3,375000,125000.0
+2,Lee,Busan,1,85000,85000.0
