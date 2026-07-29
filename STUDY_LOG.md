@@ -192,6 +192,40 @@
 
 ---
 
+## Day 15
+
+### SQL JOIN
+
+- INNER JOIN
+- LEFT JOIN
+- ON
+- 별칭(alias)
+- JOIN + GROUP BY
+
+### Python 연동
+
+- pandas.read_sql()
+- JOIN 결과 DataFrame 생성
+- 지역별 주문건수 분석
+- 막대그래프 생성
+
+### 생성 파일
+
+#### SQL
+
+- sql/day15_join.sql
+- sql/customer_sales_join.sql
+
+#### Notebook
+
+- notebooks/customer_sales_analysis.ipynb
+
+#### Output
+
+- outputs/customer_sales.csv
+
+---
+
 # Statistics
 
 (예정)

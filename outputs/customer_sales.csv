@@ -1,0 +1,5 @@
+﻿customer_id,customer_name,region,grade,order_id,order_date,status
+1,Kim,Seoul,VIP,101,2026-07-20,paid
+2,Lee,Busan,BASIC,102,2026-07-21,paid
+1,Kim,Seoul,VIP,103,2026-07-22,paid
+3,Park,Seoul,GOLD,104,2026-07-23,cancelled
