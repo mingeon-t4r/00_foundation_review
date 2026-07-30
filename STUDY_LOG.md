@@ -245,9 +245,9 @@
 
 ### 생성 파일
 
-- sql/customer_order_summary.sql
-- notebooks/customer_order_summary.ipynb
-- outputs/customer_order_summary.csv
+- sql/04_sql_customer_order_classification.sql
+- notebooks/05_sql_python_customer_order_classification.ipynb
+- outputs/customer_order_classification.csv
 
 ---
 
