@@ -145,7 +145,7 @@
 
 ### 생성 파일
 
-- sql/day12_sql_basic.sql
+- notebooks/01_python_basics_review.ipynb
 
 ---
 
@@ -162,8 +162,10 @@
 
 ### 생성 파일
 
-- sql/day13_select.sql
-- notes/day13_sql_note.md
+- sql/01_sql_basics_review.sql
+- notebooks/02_customer_order_analysis.ipynb
+- outputs/region_sales.png
+- outputs/customer_summary.csv
 
 ---
 
@@ -186,8 +188,8 @@
 
 ### 생성 파일
 
-- sql/day14_groupby.sql
-- notebooks/customer_summary.ipynb
+- sql/02_sql_customer_summary.sql
+- notebooks/03_sql_python_customer_summary.ipynb
 - outputs/region_customer_count.png
 
 ---
@@ -211,18 +213,41 @@
 
 ### 생성 파일
 
-#### SQL
-
-- sql/day15_join.sql
-- sql/customer_sales_join.sql
-
-#### Notebook
-
-- notebooks/customer_sales_analysis.ipynb
-
-#### Output
-
+- sql/03_sql_customer_sales_join.sql
+- notebooks/04_sql_python_customer_sales_analysis.ipynb
 - outputs/customer_sales.csv
+
+---
+
+## Day 16
+
+### HAVING
+
+- GROUP BY 결과 필터링
+- WHERE와 HAVING 차이 이해
+
+### CASE WHEN
+
+- 조건에 따른 새로운 컬럼 생성
+- 고객 등급 분류
+- 주문 상태 분류
+
+### SQL 응용
+
+- JOIN + GROUP BY + HAVING
+- CASE + GROUP BY
+
+### Python 연동
+
+- pandas.read_sql()
+- DataFrame 생성
+- CSV 저장
+
+### 생성 파일
+
+- sql/customer_order_summary.sql
+- notebooks/customer_order_summary.ipynb
+- outputs/customer_order_summary.csv
 
 ---
 

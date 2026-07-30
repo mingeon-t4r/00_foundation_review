@@ -100,7 +100,7 @@
 |------|------|
 | Python 기초 | ✅ 완료 |
 | pandas 기초 | ✅ 완료 |
-| SQL 기초 | ✅ JOIN까지 완료 |
+| SQL 기초 | ✅ HAVING · CASE WHEN까지 완료 |
 | Python + SQL | ✅ JOIN 분석 가능 |
 | Statistics | 예정 |
 | Mini Project | 진행 중 |

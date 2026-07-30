@@ -1,0 +1,5 @@
+﻿customer_id,customer_name,region,grade,customer_type,total_order_count,paid_order_count,cancelled_order_count,last_order_date,Activity_level
+1,Kim,Seoul,VIP,Premium,2,2,0,2026-07-22,Active
+2,Lee,Busan,BASIC,Basic,1,1,0,2026-07-21,Normal
+3,Park,Seoul,GOLD,Gold,1,0,1,2026-07-23,Normal
+4,Choi,Incheon,BASIC,Basic,0,0,0,,Inactive
