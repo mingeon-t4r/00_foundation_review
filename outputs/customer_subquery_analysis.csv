@@ -1,0 +1,5 @@
+﻿customer_id,customer_name,region,grade,order_count,first_order_date,last_order_date,has_order,avg_customer_order_count,comparison_group
+1,Kim,Seoul,VIP,2,2026-07-20,2026-07-22,1,1.0,above_average
+2,Lee,Busan,BASIC,1,2026-07-21,2026-07-21,1,1.0,average
+3,Park,Seoul,GOLD,1,2026-07-23,2026-07-23,1,1.0,average
+4,Choi,Incheon,BASIC,0,,,0,1.0,below_average
