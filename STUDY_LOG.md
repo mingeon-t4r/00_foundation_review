@@ -297,6 +297,61 @@
 
 ---
 
+## Day 18 - Window Function을 이용한 고객 주문 순서 분석
+
+### 학습 주제
+- Window Function
+- OVER
+- PARTITION BY
+- Window Function의 ORDER BY
+- ROW_NUMBER
+- RANK
+- DENSE_RANK
+- LAG
+- LEAD
+- COUNT OVER
+- 고객별 주문 순서와 재주문 간격 분석
+
+### 학습 내용
+- 윈도우 함수는 여러 행을 참고해 계산하지만 GROUP BY처럼 상세 행을 줄이지 않는다는 점을 학습했다.
+- OVER 안의 PARTITION BY를 사용해 고객별로 계산 범위를 나눴다.
+- ROW_NUMBER를 사용해 고객별 주문 순서를 계산했다.
+- 같은 주문일이 있을 때 결과를 일정하게 만들기 위해 order_id를 보조 정렬 기준으로 사용했다.
+- RANK와 DENSE_RANK를 사용해 고객별 주문 수 순위를 계산하고 동점 처리 차이를 확인했다.
+- LAG를 사용해 고객별 이전 주문일을 가져왔다.
+- LEAD를 사용해 고객별 다음 주문일을 가져왔다.
+- julianday를 사용해 이전 주문 후 현재 주문까지 걸린 일수를 계산했다.
+- 윈도우 함수 결과를 필터링하려면 서브쿼리로 한 번 감싸야 한다는 점을 학습했다.
+
+### Python 연동
+- pandas.read_sql()을 사용해 고객 주문 순서 분석 결과를 DataFrame으로 불러왔다.
+- 주문일, 이전 주문일, 다음 주문일을 datetime 자료형으로 변환했다.
+- 주문 ID 중복 여부와 날짜 결측치를 확인했다.
+- 고객별 주문 수와 순위를 별도 DataFrame으로 불러왔다.
+- 고객별 주문 수 그래프를 생성했다.
+- 주문 순서 분석 결과를 CSV로 저장했다.
+
+### 생성 파일
+- `sql/06_sql_customer_order_window_analysis.sql`
+- `notebooks/07_sql_python_customer_order_window_analysis.ipynb`
+- `outputs/customer_order_window_analysis.csv`
+- `outputs/customer_order_rank.png`
+
+### 배운 점
+- GROUP BY는 여러 행을 그룹별 한 행으로 줄이지만 윈도우 함수는 기존 상세 행을 유지한다.
+- PARTITION BY는 고객이 바뀔 때 계산을 다시 시작하게 한다.
+- 윈도우 함수 안의 ORDER BY는 계산 순서를 정하고, 쿼리 마지막의 ORDER BY는 결과 표시 순서를 정한다.
+- LAG와 LEAD를 이용하면 이전 주문과 다음 주문을 직접 JOIN하지 않고 비교할 수 있다.
+- 순위 함수는 동점 처리 방식에 따라 ROW_NUMBER, RANK, DENSE_RANK를 구분해서 사용해야 한다.
+
+### 분석 결과 해석
+- 고객별 주문 순서와 이전 주문 후 경과일을 계산해 재주문 흐름을 확인했다.
+- 주문 횟수가 많은 고객을 고객 순위로 비교했다.
+- 재주문 기간이 짧은 고객은 반복 활동이 상대적으로 높은 고객일 수 있다.
+- 현재 데이터에는 주문 금액과 상품 정보가 연결되어 있지 않으므로 주문 횟수가 많다고 해서 매출 기여도가 높다고 판단할 수는 없다.
+
+---
+
 # Statistics
 
 (예정)
