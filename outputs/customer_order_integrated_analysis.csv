@@ -1,0 +1,5 @@
+﻿customer_id,customer_name,region,grade,total_order_count,completed_order_count,cancelled_order_count,completion_rate,first_order_date,last_order_date,active_period_days,avg_days_between_orders,avg_customer_order_count,order_count_rank,activity_segment,status_segment,management_action
+1,Kim,Seoul,VIP,2,0,0,0.0,2026-07-20,2026-07-22,2.0,2.0,1.0,1,high_activity,mixed_status,retention_priority
+2,Lee,Busan,BASIC,1,0,0,0.0,2026-07-21,2026-07-21,,,1.0,2,single_order,mixed_status,general_management
+3,Park,Seoul,GOLD,1,0,1,0.0,2026-07-23,2026-07-23,,,1.0,2,single_order,cancelled_only,order_issue_review
+4,Choi,Incheon,BASIC,0,0,0,0.0,,,,,1.0,3,no_order,no_order,activation_candidate
