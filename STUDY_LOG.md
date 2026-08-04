@@ -403,6 +403,201 @@
 
 ---
 
+## Day 20 - 확장 데이터 기반 SQL 고객 주문 미니 프로젝트
+
+### 데이터 확장 배경
+
+기존 `retail_lab.db`는 고객 4명과 주문 4건으로 구성되어 있어
+고객 순위, 주문 간격, 최근성과 관리 대상 분류를 비교하기에 데이터가 부족했다.
+
+원본 데이터베이스는 보존하고,
+학습용 고객과 주문 데이터를 추가한 `retail_lab_day20.db`를 별도로 사용했다.
+
+### 확장 후 데이터
+
+- 고객: 30명
+- 주문: 104건
+- paid 주문: 86건
+- cancelled 주문: 18건
+- 주문 고객: 25명
+- 주문 없는 고객: 5명
+- 분석 기간: 2025-11-25 ~ 2026-07-31
+
+추가한 고객과 주문 데이터는 SQL 학습을 위한 가상 데이터다.
+
+### 프로젝트 주제
+
+고객 주문 활동 및 관리 대상 분석
+
+### 문제 정의
+
+고객 관리 담당자가 유지, 재활성화와 주문 문제 점검 대상의
+우선순위를 정할 수 있도록 고객별 주문 횟수, 주문 상태,
+최근 주문 경과일과 평균 주문 간격을 고객 단위로 분석했다.
+
+### 분석 범위
+
+- 데이터베이스: `D:\Study\SQL\database\retail_lab_day20.db`
+- 사용 테이블: `customers`, `orders`
+- 연결 키: `customer_id`
+- 분석 단위: 고객 1명당 1행
+- 분석 기준일: orders 테이블의 최대 order_date
+- 주문 상태: `paid`, `cancelled`
+
+### 핵심 지표
+
+- 전체 주문 수
+- paid 주문 수
+- cancelled 주문 수
+- paid 비율
+- 최초 주문일
+- 최근 주문일
+- 고객 활동 기간
+- 평균 주문 간격
+- 최근 주문 경과일
+- 전체 고객 평균 주문 수
+- 주문 수 순위
+
+### 고객 활동 상태
+
+- `no_order`: 주문 이력 없음
+- `recent`: 최근 주문 후 30일 이하
+- `cooling`: 최근 주문 후 31일 이상 60일 이하
+- `inactive_candidate`: 최근 주문 후 60일 초과
+
+### 관리 대상 분류
+
+- `activation_candidate`: 주문 이력이 없는 고객
+- `order_issue_review`: 취소 주문 수가 paid 주문 수보다 많은 고객
+- `retention_priority`: 평균보다 주문이 많고 최근 30일 이내 주문한 고객
+- `reengagement_candidate`: 최근 주문 후 60일이 지난 고객
+- `general_management`: 그 외 고객
+
+30일과 60일은 학습을 위해 정한 기준이며 실제 업무 정책은 아니다.
+
+### SQL 학습 내용
+
+- 원본 DB를 보존하고 별도의 확장 DB를 사용했다.
+- `INSERT OR IGNORE`를 사용해 학습용 고객과 주문 데이터를 추가했다.
+- 데이터 생성 SQL과 분석 SQL을 별도 파일로 분리했다.
+- `LEFT JOIN`을 사용해 주문 이력이 없는 고객까지 분석에 포함했다.
+- `COUNT(o.order_id)`를 사용해 주문 없는 고객의 주문 수를 0건으로 계산했다.
+- `CASE WHEN`과 `SUM()`을 사용해 paid 주문과 cancelled 주문을 조건부 집계했다.
+- `MIN()`과 `MAX()`를 사용해 고객별 최초 주문일과 최근 주문일을 계산했다.
+- `LAG()`를 사용해 고객별 이전 주문일을 계산했다.
+- `julianday()`를 사용해 주문 간격과 최근 주문 경과일을 계산했다.
+- `AVG() OVER()`를 사용해 전체 고객 평균 주문 수를 계산했다.
+- `DENSE_RANK()`를 사용해 고객별 주문 수 순위를 계산했다.
+- 여러 단계의 서브쿼리를 사용해 주문 단위 데이터를 고객 단위 데이터로 변환했다.
+- `CASE WHEN`을 사용해 고객 활동 상태와 관리 대상을 분류했다.
+
+### Python 연동
+
+- `pandas.read_sql()`을 사용해 SQL 분석 결과를 DataFrame으로 불러왔다.
+- 고객 수와 주문 수를 별도 SQL로 확인했다.
+- 주문 상태와 분석 기간을 확인했다.
+- 날짜 열을 datetime 형식으로 변환했다.
+- 고객 ID 중복 여부를 확인했다.
+- 고객별 전체 주문 수 합계와 원본 주문 수를 비교했다.
+- 고객별 paid 주문 수 합계와 원본 paid 주문 수를 비교했다.
+- 고객별 cancelled 주문 수 합계와 원본 cancelled 주문 수를 비교했다.
+- 활동 상태별 고객 수를 확인했다.
+- 관리 대상별 고객 수와 평균 주문 수를 집계했다.
+- 관리 대상별 고객 목록을 확인했다.
+- 최종 고객 분석 CSV와 관리 대상 요약 CSV를 저장했다.
+- 관리 대상별 고객 수 그래프를 저장했다.
+
+### 생성 파일
+
+- `sql/08_sql_retail_lab_day20_seed.sql`
+- `sql/09_sql_customer_order_mini_project.sql`
+- `notebooks/09_sql_python_customer_order_mini_project.ipynb`
+- `outputs/customer_order_mini_project.csv`
+- `outputs/customer_management_summary.csv`
+- `outputs/customer_management_action.png`
+- `notes/sql_customer_order_mini_project_report.md`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 보존한 Day 19 파일
+
+- `sql/07_sql_customer_order_integrated_analysis.sql`
+- `notebooks/08_sql_python_customer_order_integrated_analysis.ipynb`
+- `outputs/customer_order_integrated_analysis.csv`
+- `outputs/customer_activity_segment.png`
+
+Day 19 파일은 당시의 SQL 종합 학습 결과로 유지하고,
+Day 20 미니 프로젝트는 별도의 SQL과 Notebook으로 분리했다.
+
+### 결과 검증
+
+- 전체 고객 수: 30명
+- 최종 분석 행 수: 30행
+- 고객 ID 중복 수: 0
+- 원본 주문 수: 104건
+- 고객별 전체 주문 수 합계: 104건
+- 원본 paid 주문 수: 86건
+- 고객별 paid 주문 수 합계: 86건
+- 원본 cancelled 주문 수: 18건
+- 고객별 cancelled 주문 수 합계: 18건
+- 주문 없는 고객 수: 5명
+
+### 핵심 결과
+
+- 전체 고객의 평균 주문 수는 약 3.47건이다.
+- 전체 주문 중 paid 주문 비율은 약 82.7%다.
+- recent 고객은 17명이다.
+- cooling 고객은 3명이다.
+- inactive_candidate 고객은 5명이다.
+- no_order 고객은 5명이다.
+- retention_priority 고객은 9명이다.
+- order_issue_review 고객은 4명이다.
+- reengagement_candidate 고객은 5명이다.
+- activation_candidate 고객은 5명이다.
+- general_management 고객은 7명이다.
+
+### 결과 해석
+
+`retention_priority` 고객군은 평균 주문 수가 6건이고
+평균 최근 주문 경과일이 약 4.7일로 주문 빈도와 최근 활동이 모두 높았다.
+
+`reengagement_candidate` 고객군은 평균 주문 수가 3.6건으로
+과거 주문 경험은 있지만 평균 최근 주문 경과일이 약 114일로 주문 공백이 길었다.
+
+`order_issue_review` 고객은 최근 주문 활동이 존재하지만
+cancelled 주문 수가 paid 주문 수보다 많아 주문 과정의 문제를 추가로 확인할 필요가 있다.
+
+`activation_candidate` 고객 5명 중 4명이 Busan 지역 고객으로,
+지역별 가입 경로나 첫 구매 과정에 차이가 있는지 추가 확인할 수 있다.
+
+### 배운 점
+
+- 분석 목적에 비해 데이터가 지나치게 적으면 SQL이 실행되어도 의미 있는 비교가 어렵다.
+- 학습 데이터를 추가할 때는 원본 DB를 보존하고 별도 복사본을 사용하는 것이 안전하다.
+- 실제 DB의 상태값을 확인하지 않고 `completed`와 같은 값을 가정하면 조건부 집계가 잘못된다.
+- 데이터 생성 SQL과 최종 분석 SQL을 분리하면 각 파일의 역할이 명확해진다.
+- Day 19 종합 학습 파일과 Day 20 완성형 프로젝트 파일을 분리하면 학습 과정과 프로젝트 결과를 모두 보존할 수 있다.
+- 최종 SQL이 실행됐다는 사실만으로는 충분하지 않고 고객 수, 중복과 주문 수 합계를 별도로 검증해야 한다.
+- 관리 대상 분류는 데이터에서 관측된 값과 학습용 업무 규칙을 결합한 결과다.
+- 분석 결과와 업무 제안은 구분해서 설명해야 한다.
+
+### 분석 한계
+
+- 추가한 고객과 주문 데이터는 학습용 가상 데이터다.
+- orders 테이블에 상품 ID, 수량과 주문 금액이 없다.
+- 고객별 주문 횟수는 분석할 수 있지만 매출 기여도와 수익성은 판단할 수 없다.
+- 고객 가입일이 없어 가입 후 첫 주문까지 걸린 기간을 계산할 수 없다.
+- 주문 취소 사유가 없어 취소 주문이 많은 원인을 직접 확인할 수 없다.
+- 최근 30일과 60일 기준은 학습용 업무 규칙이다.
+- 최근 주문 공백만으로 고객 이탈을 확정할 수 없다.
+- 관리 대상 분류는 통계 검정이나 머신러닝 예측 결과가 아니다.
+- 고객 연락과 캠페인의 실제 효과는 별도의 실험으로 검증해야 한다.
+
+---
+
 # Statistics
 
 (예정)

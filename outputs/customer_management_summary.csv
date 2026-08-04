@@ -1,0 +1,6 @@
+﻿management_action,customer_count,average_order_count,average_recency_days
+activation_candidate,5,0.0,
+general_management,7,2.29,28.1
+order_issue_review,4,4.0,15.8
+reengagement_candidate,5,3.6,114.0
+retention_priority,9,6.0,4.7

@@ -1,39 +1,38 @@
 # 00 Foundation Review
 
-> SQL, Python, 통계 기초를 다시 수행하며 데이터 분석의 기본기를 프로젝트 형태로 재구성하는 저장소입니다.
+> SQL, Python, pandas와 데이터 분석 기초를 다시 수행하고, 학습 내용을 재현 가능한 프로젝트 산출물로 정리하는 저장소입니다.
 
 ---
 
-# 프로젝트 소개
+## 프로젝트 소개
 
-이 프로젝트는 데이터 분석 프로젝트를 시작하기 전에
-기존에 학습한 내용을 다시 수행하며 산출물로 정리하는 것을 목표로 합니다.
+이 프로젝트는 데이터 분석 직무 전환을 준비하면서 기존에 학습한 내용을 다시 수행하고, 단순 문법 연습을 SQL·Python·시각화·문서화가 연결된 프로젝트 형태로 재구성하는 것을 목표로 합니다.
 
-단순히 문법을 따라 하는 것이 아니라,
+주요 학습 과정은 다음과 같습니다.
 
-- SQL 작성
-- Python 데이터 분석
-- 데이터 시각화
-- Git/GitHub 관리
-- 프로젝트 문서화
-
-까지 포함하여 실제 프로젝트처럼 관리합니다.
-
----
-
-# 프로젝트 목표
-
-- SQL 기초 문법 숙달
 - Python 기초 문법 복습
-- pandas 데이터 분석
-- SQLite와 Python 연동
-- 데이터 시각화
-- Git 프로젝트 관리
-- README 작성 연습
+- pandas를 이용한 데이터 처리와 분석
+- SQLite와 SQL을 이용한 데이터 조회 및 집계
+- SQL과 Python 연동
+- 데이터 검증과 시각화
+- Git/GitHub를 이용한 버전 관리
+- 분석 결과와 한계 문서화
 
 ---
 
-# 사용 기술
+## 프로젝트 목표
+
+- SQL 기본 문법과 실무형 쿼리 작성 능력 강화
+- Python 및 pandas 기초 재정립
+- SQLite 데이터베이스와 Python 연동
+- 분석 단위와 핵심 지표를 먼저 정의하는 습관 형성
+- SQL 결과를 Python에서 검증하고 시각화
+- 재현 가능한 데이터 준비 과정과 분석 코드 관리
+- 향후 통계·머신러닝·포트폴리오 프로젝트의 기반 구축
+
+---
+
+## 사용 기술
 
 - Python 3.13
 - SQLite
@@ -42,30 +41,67 @@
 - matplotlib
 - Jupyter Notebook
 - VS Code
+- DB Browser for SQLite
 - Git
 - GitHub
 
 ---
 
-# 프로젝트 구조
+## 프로젝트 구조
 
-```
+```text
 00_foundation_review/
 │
 ├── data/
 │   ├── raw/
 │   └── processed/
 │
-├── sql/
-│
 ├── notebooks/
-│
-├── src/
-│
-├── outputs/
+│   ├── 01_python_basics_rebuild.ipynb
+│   ├── 02_customer_order_analysis.ipynb
+│   ├── 03_sql_python_customer_summary.ipynb
+│   ├── 04_sql_python_customer_order_analysis.ipynb
+│   ├── 05_sql_python_customer_order_classification.ipynb
+│   ├── 06_sql_python_customer_subquery_analysis.ipynb
+│   ├── 07_sql_python_customer_order_window_analysis.ipynb
+│   ├── 08_sql_python_customer_order_integrated_analysis.ipynb
+│   └── 09_sql_python_customer_order_mini_project.ipynb
 │
 ├── notes/
+│   └── sql_customer_order_mini_project_report.md
 │
+├── outputs/
+│   ├── customer_order_classification.csv
+│   ├── customer_orders.csv
+│   ├── customer_summary.csv
+│   ├── customer_subquery_analysis.csv
+│   ├── customer_order_window_analysis.csv
+│   ├── customer_order_integrated_analysis.csv
+│   ├── customer_order_mini_project.csv
+│   ├── customer_management_summary.csv
+│   ├── region_customer_count.png
+│   ├── region_sales.png
+│   ├── customer_order_count_vs_average.png
+│   ├── customer_order_rank.png
+│   ├── customer_activity_segment.png
+│   └── customer_management_action.png
+│
+├── sql/
+│   ├── 01_sql_basics_review.sql
+│   ├── 02_sql_customer_summary.sql
+│   ├── 03_sql_customer_order_join.sql
+│   ├── 04_sql_customer_order_classification.sql
+│   ├── 05_sql_customer_subquery_analysis.sql
+│   ├── 06_sql_customer_order_window_analysis.sql
+│   ├── 07_sql_customer_order_integrated_analysis.sql
+│   ├── 08_sql_retail_lab_day20_seed.sql
+│   └── 09_sql_customer_order_mini_project.sql
+│
+├── src/
+│   ├── __init__.py
+│   └── kpi_utils.py
+│
+├── .gitignore
 ├── README.md
 ├── STUDY_LOG.md
 └── requirements.txt
@@ -73,54 +109,244 @@
 
 ---
 
-# 주요 산출물
+## 데이터베이스
 
-### SQL
+### 기본 학습 DB
 
-- SQL 기초 실습
-- 데이터 조회
-- 데이터 집계
+```text
+D:/Study/SQL/database/retail_lab.db
+```
 
-### Python
+### Day 20 확장 학습 DB
 
-- SQLite 연동
-- pandas 분석
-- 데이터 시각화
+```text
+D:/Study/SQL/database/retail_lab_day20.db
+```
 
-### Output
+기존 DB는 고객 4명과 주문 4건으로 구성되어 있어 고객 순위, 재주문 간격, 최근성과 관리 대상 분류를 비교하기에 데이터가 부족했습니다.
 
-- 분석 결과 CSV
-- 그래프 이미지
+원본 DB는 보존하고 별도의 확장 DB를 만들어 Day 20 SQL 미니 프로젝트에 사용했습니다.
+
+확장 데이터 구성:
+
+| 항목 | 값 |
+|---|---:|
+| 고객 수 | 30명 |
+| 주문 수 | 104건 |
+| 결제 주문 | 86건 |
+| 취소 주문 | 18건 |
+| 주문 기간 | 2025-11-25 ~ 2026-07-31 |
+| 주문 이력이 없는 고객 | 5명 |
+
+확장 데이터는 SQL 학습과 분석 연습을 위해 만든 가상 데이터입니다.
+
+데이터 추가 과정은 다음 파일로 재현할 수 있습니다.
+
+```text
+sql/08_sql_retail_lab_day20_seed.sql
+```
+
+DB 파일 자체는 프로젝트 저장소에 포함하지 않고 로컬 데이터베이스 폴더에서 관리합니다.
 
 ---
 
-# 진행 현황
+## SQL Mini Project
+
+### Customer Order Activity Analysis
+
+고객별 주문 횟수, 주문 상태, 최근 주문 경과일과 평균 주문 간격을 분석해 고객 관리 대상을 분류했습니다.
+
+### 문제 정의
+
+고객 관리 담당자가 유지, 재활성화와 주문 문제 점검 대상의 우선순위를 정할 수 있도록 고객별 주문 활동을 고객 단위로 분석합니다.
+
+### 분석 질문
+
+1. 고객별 전체 주문 수는 몇 건인가?
+2. 결제 주문과 취소 주문은 각각 몇 건인가?
+3. 고객별 최초 주문일과 최근 주문일은 언제인가?
+4. 고객의 평균 주문 간격은 며칠인가?
+5. 데이터 기준일로부터 최근 주문 후 며칠이 지났는가?
+6. 평균보다 주문 활동이 높은 고객은 누구인가?
+7. 유지·재활성화·첫 구매 활성화·주문 문제 점검 대상은 누구인가?
+
+### 분석 기준
+
+- 사용 테이블: `customers`, `orders`
+- 연결 키: `customer_id`
+- 분석 단위: 고객 1명당 1행
+- 기준일: `orders` 테이블의 최대 `order_date`
+- 주문 상태: `paid`, `cancelled`
+
+### 핵심 지표
+
+- 전체 주문 수
+- 결제 주문 수
+- 취소 주문 수
+- 결제율
+- 최초 주문일
+- 최근 주문일
+- 고객 활동 기간
+- 평균 주문 간격
+- 최근 주문 경과일
+- 전체 고객 평균 주문 수
+- 주문 수 순위
+
+### 관리 대상 분류
+
+| 분류 | 기준 |
+|---|---|
+| `activation_candidate` | 주문 이력이 없는 고객 |
+| `order_issue_review` | 취소 주문 수가 결제 주문 수보다 많은 고객 |
+| `retention_priority` | 전체 고객 평균보다 주문 수가 많고 최근 30일 이내 주문한 고객 |
+| `reengagement_candidate` | 최근 주문 후 60일이 지난 고객 |
+| `general_management` | 위 조건에 해당하지 않는 고객 |
+
+30일과 60일은 학습을 위해 정한 예시 기준이며 실제 업무 정책이 아닙니다.
+
+### 핵심 결과
+
+| 관리 대상 | 고객 수 |
+|---|---:|
+| `retention_priority` | 9명 |
+| `order_issue_review` | 4명 |
+| `reengagement_candidate` | 5명 |
+| `activation_candidate` | 5명 |
+| `general_management` | 7명 |
+| **합계** | **30명** |
+
+전체 고객의 평균 주문 수는 약 **3.47건**입니다.
+
+활동 상태 분포:
+
+| 활동 상태 | 고객 수 |
+|---|---:|
+| `recent` | 17명 |
+| `cooling` | 3명 |
+| `inactive_candidate` | 5명 |
+| `no_order` | 5명 |
+
+![고객 관리 대상별 고객 수](outputs/customer_management_action.png)
+
+---
+
+## 주요 SQL 기술
+
+- `SELECT`, `WHERE`, `ORDER BY`
+- 집계 함수와 `GROUP BY`
+- `HAVING`
+- `INNER JOIN`, `LEFT JOIN`
+- `CASE WHEN`
+- 조건부 집계
+- Subquery
+- `ROW_NUMBER`
+- `RANK`, `DENSE_RANK`
+- `LAG`, `LEAD`
+- Window Function
+- `julianday`를 이용한 날짜 차이 계산
+
+---
+
+## 주요 산출물
+
+### 데이터 준비
+
+- `sql/08_sql_retail_lab_day20_seed.sql`
+
+### 최종 SQL 프로젝트
+
+- `sql/09_sql_customer_order_mini_project.sql`
+
+### SQL·Python 연동 분석
+
+- `notebooks/09_sql_python_customer_order_mini_project.ipynb`
+
+### 분석 결과
+
+- `outputs/customer_order_mini_project.csv`
+- `outputs/customer_management_summary.csv`
+- `outputs/customer_management_action.png`
+
+### 분석 보고서
+
+- `notes/sql_customer_order_mini_project_report.md`
+
+### 학습 기록
+
+- `STUDY_LOG.md`
+
+---
+
+## 결과 검증
+
+최종 분석 결과는 다음 조건으로 검증했습니다.
+
+- 최종 결과 행 수 = 전체 고객 수 30명
+- 고객 ID 중복 수 = 0
+- 고객별 전체 주문 수 합계 = 원본 주문 수 104건
+- 결제 주문 수 = 86건
+- 취소 주문 수 = 18건
+- 주문 없는 고객의 주문 수 = 0건
+- 주문 없는 고객의 날짜 및 최근성 지표 = 결측값
+
+---
+
+## 분석 한계
+
+1. 추가한 고객과 주문 데이터는 학습용 가상 데이터입니다.
+2. `orders` 테이블에 상품, 수량과 주문 금액이 연결되어 있지 않습니다.
+3. 고객별 매출 기여도, 객단가와 수익성을 분석할 수 없습니다.
+4. 고객 가입일이 없어 가입 후 첫 주문까지 걸린 기간을 계산할 수 없습니다.
+5. 주문 취소 사유가 없어 취소가 많은 원인을 직접 확인할 수 없습니다.
+6. 30일과 60일 기준은 학습용 업무 규칙입니다.
+7. 최근 주문 공백만으로 고객 이탈을 확정할 수 없습니다.
+8. 고객 관리 분류는 통계 모델이나 머신러닝 예측 결과가 아닙니다.
+9. 캠페인의 실제 효과는 별도의 실험이나 통계 검증이 필요합니다.
+
+---
+
+## 진행 현황
 
 | 분야 | 상태 |
-|------|------|
+|---|---|
 | Python 기초 | ✅ 완료 |
 | pandas 기초 | ✅ 완료 |
-| SQL 기초 | ✅ HAVING · CASE WHEN까지 완료 |
-| Python + SQL | ✅ JOIN 분석 가능 |
+| SQLite 기초 | ✅ 완료 |
+| SQL 조회·집계 | ✅ 완료 |
+| JOIN·조건부 집계 | ✅ 완료 |
+| Subquery | ✅ 완료 |
+| Window Function | ✅ 완료 |
+| SQL·Python 연동 | ✅ 완료 |
+| SQL Mini Project | ✅ 완료 |
 | Statistics | 예정 |
-| Mini Project | 진행 중 |
+| Machine Learning | 예정 |
+| Portfolio Project | 예정 |
 
 ---
 
-# 향후 프로젝트
+## 향후 학습 및 프로젝트
 
-Foundation Review 이후에는 아래 프로젝트를 진행합니다.
+Foundation Review 이후에는 다음 단계로 확장할 예정입니다.
 
-- Retail Sales Analysis
-- Customer Analysis
-- Customer Segmentation
-- Churn Prediction
-- Dashboard Project
+- 기초 통계와 가설 검정
+- 고객 행동 지표 분석
+- 고객 세분화
+- 이탈 분석
+- 매출 및 상품 분석
+- 대시보드 프로젝트
+- 포트폴리오용 통합 프로젝트
+
+현재 DB에 주문 상품과 금액 데이터를 추가하면 다음 분석으로 확장할 수 있습니다.
+
+- 고객별 구매금액
+- 객단가
+- 상품별 판매량
+- 상품별 매출
+- 고객별 수익 기여도
+- RFM 분석
 
 ---
 
-# 학습 기록
+## 학습 기록
 
-세부 학습 내용은 아래 문서에서 관리합니다.
-
-➡ **STUDY_LOG.md**
+일자별 상세 학습 내용, 오류와 해결 과정은 `STUDY_LOG.md`에서 관리합니다.
