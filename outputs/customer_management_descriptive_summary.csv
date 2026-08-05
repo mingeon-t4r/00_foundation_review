@@ -1,0 +1,6 @@
+﻿management_action,count,mean,median,std,min,max
+activation_candidate,5,0.0,0.0,0.0,0,0
+general_management,7,2.29,2.0,0.76,1,3
+order_issue_review,4,4.0,4.0,0.82,3,5
+reengagement_candidate,5,3.6,4.0,1.14,2,5
+retention_priority,9,6.0,6.0,1.73,4,9

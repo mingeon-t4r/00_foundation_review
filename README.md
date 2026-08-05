@@ -65,7 +65,8 @@
 │   ├── 06_sql_python_customer_subquery_analysis.ipynb
 │   ├── 07_sql_python_customer_order_window_analysis.ipynb
 │   ├── 08_sql_python_customer_order_integrated_analysis.ipynb
-│   └── 09_sql_python_customer_order_mini_project.ipynb
+│   ├── 09_sql_python_customer_order_mini_project.ipynb
+│   └── 10_customer_order_descriptive_statistics.ipynb
 │
 ├── notes/
 │   └── sql_customer_order_mini_project_report.md
@@ -84,7 +85,11 @@
 │   ├── customer_order_count_vs_average.png
 │   ├── customer_order_rank.png
 │   ├── customer_activity_segment.png
-│   └── customer_management_action.png
+│   ├── customer_management_action.png
+│   ├── customer_order_descriptive_summary.csv
+│   ├── customer_management_descriptive_summary.csv
+│   ├── customer_order_count_histogram.png
+│   └── customer_order_count_boxplot.png
 │
 ├── sql/
 │   ├── 01_sql_basics_review.sql
@@ -228,6 +233,82 @@ DB 파일 자체는 프로젝트 저장소에 포함하지 않고 로컬 데이�
 
 ![고객 관리 대상별 고객 수](outputs/customer_management_action.png)
 
+## Descriptive Statistics Analysis
+
+### Customer Order Distribution Analysis
+
+Day 20 SQL 미니 프로젝트에서 생성한 고객 단위 데이터를 이용해
+고객 주문 횟수의 대표값, 산포도, 사분위수와 분포를 분석했습니다.
+
+### 분석 질문
+
+1. 전체 고객의 평균 주문 수와 중앙값은 얼마인가?
+2. 가장 자주 나타나는 주문 횟수는 몇 건인가?
+3. 고객 주문 수의 변동성은 어느 정도인가?
+4. 고객 주문 수의 가운데 50%는 어느 범위에 있는가?
+5. IQR 기준 잠재적 이상치가 존재하는가?
+6. 관리 대상별 주문 횟수 분포는 어떻게 다른가?
+7. 전체 평균 주문 수를 모든 고객에게 동일하게 적용해도 되는가?
+
+### 분석 데이터
+
+- 입력 파일: `outputs/customer_order_mini_project.csv`
+- 분석 단위: 고객 1명당 1행
+- 분석 고객 수: 30명
+- 주요 분석 변수: `total_order_count`
+- 고객 분류 변수: `management_action`
+
+### 핵심 통계 결과
+
+| 통계량 | 결과 |
+|---|---:|
+| 고객 수 | 30명 |
+| 평균 주문 수 | 약 3.47건 |
+| 중앙값 | 3.5건 |
+| 최빈값 | 4건 |
+| 표준편차 | 약 2.37건 |
+| 최솟값 | 0건 |
+| Q1 | 2건 |
+| Q3 | 5건 |
+| 최댓값 | 9건 |
+| IQR | 3건 |
+| IQR 기준 잠재적 이상치 | 0명 |
+
+평균 주문 수와 중앙값이 비슷하므로 특정 고주문 고객 한 명이
+전체 평균을 크게 왜곡하는 분포는 아니었습니다.
+
+다만 고객별 주문 수는 0건에서 9건까지 분포하고
+표준편차가 약 2.37건이므로 고객 간 주문 활동 차이는 존재합니다.
+
+### 관리 대상별 평균 주문 수
+
+| 관리 대상 | 평균 주문 수 |
+|---|---:|
+| `activation_candidate` | 0건 |
+| `general_management` | 약 2.29건 |
+| `order_issue_review` | 4건 |
+| `reengagement_candidate` | 3.6건 |
+| `retention_priority` | 6건 |
+
+전체 평균 하나만으로 고객을 평가하기보다 주문 여부, 최근성,
+주문 상태와 관리 대상별 분포를 함께 확인하는 것이 적절합니다.
+
+### 고객 주문 수 분포
+
+![고객 주문 수 히스토그램](outputs/customer_order_count_histogram.png)
+
+### 관리 대상별 주문 수 분포
+
+![관리 대상별 주문 수 상자그림](outputs/customer_order_count_boxplot.png)
+
+### 분석 한계
+
+- 분석 데이터는 학습을 위해 생성한 가상 데이터입니다.
+- 고객 수가 30명으로 실제 고객 전체를 대표하지 않습니다.
+- 주문 금액과 상품 정보가 없어 주문 횟수만 분석했습니다.
+- 주문 횟수가 많다고 해서 고객의 매출 기여도가 높다는 뜻은 아닙니다.
+- 기술통계는 현재 데이터의 모습을 요약하지만 차이의 원인이나 인과관계를 설명하지 않습니다.
+
 ---
 
 ## 주요 SQL 기술
@@ -266,6 +347,14 @@ DB 파일 자체는 프로젝트 저장소에 포함하지 않고 로컬 데이�
 - `outputs/customer_order_mini_project.csv`
 - `outputs/customer_management_summary.csv`
 - `outputs/customer_management_action.png`
+
+### 기술통계 분석
+
+- `notebooks/10_customer_order_descriptive_statistics.ipynb`
+- `outputs/customer_order_descriptive_summary.csv`
+- `outputs/customer_management_descriptive_summary.csv`
+- `outputs/customer_order_count_histogram.png`
+- `outputs/customer_order_count_boxplot.png`
 
 ### 분석 보고서
 
@@ -318,7 +407,7 @@ DB 파일 자체는 프로젝트 저장소에 포함하지 않고 로컬 데이�
 | Window Function | ✅ 완료 |
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
-| Statistics | 예정 |
+| Statistics | 🟡 기술통계 학습 중 |
 | Machine Learning | 예정 |
 | Portfolio Project | 예정 |
 
