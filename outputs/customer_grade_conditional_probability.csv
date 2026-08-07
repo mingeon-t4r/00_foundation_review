@@ -1,0 +1,4 @@
+﻿grade,customer_count,retention_count,recent_count,retention_probability,recent_probability
+BASIC,12,1,4,0.0833,0.3333
+GOLD,10,1,6,0.1,0.6
+VIP,8,7,7,0.875,0.875

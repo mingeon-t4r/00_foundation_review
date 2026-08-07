@@ -66,7 +66,8 @@
 │   ├── 07_sql_python_customer_order_window_analysis.ipynb
 │   ├── 08_sql_python_customer_order_integrated_analysis.ipynb
 │   ├── 09_sql_python_customer_order_mini_project.ipynb
-│   └── 10_customer_order_descriptive_statistics.ipynb
+│   ├── 10_customer_order_descriptive_statistics.ipynb
+│   └── 11_customer_probability_distribution_analysis.ipynb
 │
 ├── notes/
 │   └── sql_customer_order_mini_project_report.md
@@ -89,7 +90,14 @@
 │   ├── customer_order_descriptive_summary.csv
 │   ├── customer_management_descriptive_summary.csv
 │   ├── customer_order_count_histogram.png
-│   └── customer_order_count_boxplot.png
+│   ├── customer_order_count_boxplot.png
+│   ├── customer_probability_summary.csv
+│   ├── customer_order_probability_distribution.csv
+│   ├── customer_grade_conditional_probability.csv
+│   ├── customer_order_zscore.csv
+│   ├── customer_order_probability_distribution.png
+│   ├── customer_retention_probability_by_grade.png
+│   └── customer_order_normal_comparison.png
 │
 ├── sql/
 │   ├── 01_sql_basics_review.sql
@@ -233,6 +241,8 @@ DB 파일 자체는 프로젝트 저장소에 포함하지 않고 로컬 데이�
 
 ![고객 관리 대상별 고객 수](outputs/customer_management_action.png)
 
+---
+
 ## Descriptive Statistics Analysis
 
 ### Customer Order Distribution Analysis
@@ -311,6 +321,66 @@ Day 20 SQL 미니 프로젝트에서 생성한 고객 단위 데이터를 이용
 
 ---
 
+## Probability and Distribution Analysis
+
+### Customer Probability Analysis
+
+고객 한 명을 임의로 선택한다는 관점에서
+고객 주문 활동의 경험적 확률과 조건부확률을 계산했습니다.
+
+### 주요 분석 질문
+
+- 고객이 주문 이력을 가질 확률은 얼마인가?
+- 고객이 retention_priority일 확률은 얼마인가?
+- VIP 고객 중 retention_priority일 확률은 얼마인가?
+- VIP와 retention_priority는 독립적인 사건인가?
+- 고객 주문 수의 경험적 확률분포는 어떻게 나타나는가?
+- 주문 수의 z점수는 고객의 상대적 위치를 어떻게 보여주는가?
+
+### 핵심 결과
+
+| 확률 | 결과 |
+|---|---:|
+| 주문 이력 있음 | 약 83.3% |
+| 주문 이력 없음 | 약 16.7% |
+| recent | 약 56.7% |
+| retention_priority | 30.0% |
+| VIP | 약 26.7% |
+| retention_priority이면서 VIP | 약 23.3% |
+| retention_priority이거나 VIP | 약 33.3% |
+| VIP 조건에서 retention_priority | 87.5% |
+| retention_priority 조건에서 VIP | 약 77.8% |
+
+VIP 조건부 유지 우선 확률은 전체 유지 우선 확률보다 높게 나타났습니다.
+
+하지만 조건부확률 차이는 연관성을 보여주는 결과이며,
+VIP 등급의 인과효과를 증명하는 결과는 아닙니다.
+
+### 주문 수 확률분포
+
+![고객 주문 수 확률분포](outputs/customer_order_probability_distribution.png)
+
+### 등급별 유지 우선 조건부확률
+
+![등급별 유지 우선 확률](outputs/customer_retention_probability_by_grade.png)
+
+### 실제 주문 분포와 정규곡선 비교
+
+![주문 수 정규곡선 비교](outputs/customer_order_normal_comparison.png)
+
+### 분석 한계
+
+- 학습용 가상 데이터입니다.
+- 고객 수가 30명으로 적습니다.
+- 경험적 확률을 실제 전체 고객에게 일반화할 수 없습니다.
+- 조건부확률이 높아도 인과관계를 의미하지 않습니다.
+- 주문 수는 이산형이므로 정규분포가 정확한 모형은 아닙니다.
+
+---
+
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -355,6 +425,17 @@ Day 20 SQL 미니 프로젝트에서 생성한 고객 단위 데이터를 이용
 - `outputs/customer_management_descriptive_summary.csv`
 - `outputs/customer_order_count_histogram.png`
 - `outputs/customer_order_count_boxplot.png`
+
+### 확률·확률분포 분석
+
+- `notebooks/11_customer_probability_distribution_analysis.ipynb`
+- `outputs/customer_probability_summary.csv`
+- `outputs/customer_order_probability_distribution.csv`
+- `outputs/customer_grade_conditional_probability.csv`
+- `outputs/customer_order_zscore.csv`
+- `outputs/customer_order_probability_distribution.png`
+- `outputs/customer_retention_probability_by_grade.png`
+- `outputs/customer_order_normal_comparison.png`
 
 ### 분석 보고서
 
@@ -407,7 +488,7 @@ Day 20 SQL 미니 프로젝트에서 생성한 고객 단위 데이터를 이용
 | Window Function | ✅ 완료 |
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
-| Statistics | 🟡 기술통계 학습 중 |
+| Statistics | 🟡 기술통계·확률 학습 중 |
 | Machine Learning | 예정 |
 | Portfolio Project | 예정 |
 

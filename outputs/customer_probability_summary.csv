@@ -1,0 +1,10 @@
+﻿event,numerator,denominator,probability
+has_order,25,30,0.8333
+no_order,5,30,0.1667
+recent,17,30,0.5667
+retention_priority,9,30,0.3
+VIP,8,30,0.2667
+retention_and_VIP,7,30,0.2333
+retention_or_VIP,10,30,0.3333
+retention_given_VIP,7,8,0.875
+VIP_given_retention,7,9,0.7778
