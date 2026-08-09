@@ -831,6 +831,103 @@ VIP 등급이 주문 활동을 증가시킨다는 인과관계를 증명하지 �
 
 ---
 
+## Day 23 - Customer Order Correlation Analysis
+
+### 학습 주제
+
+- 공분산
+- Pearson 상관계수
+- 양의 상관관계와 음의 상관관계
+- 상관계수 행렬
+- 산점도를 이용한 변수 관계 확인
+- 구조적 상관관계
+- 상관관계와 인과관계 구분
+
+### 사용 데이터
+
+- `outputs/customer_order_mini_project.csv`
+
+### 학습 내용
+
+고객 주문 데이터의 주요 수치형 변수 사이의 관계를
+공분산과 Pearson 상관계수를 이용해 분석했다.
+
+공분산은 두 변수가 평균을 기준으로
+같은 방향 또는 반대 방향으로 움직이는지 보여주지만,
+변수의 단위에 영향을 받기 때문에 관계의 강도를 직접 비교하기 어렵다.
+
+Pearson 상관계수는 공분산을 두 변수의 표준편차로 나누어
+-1에서 1 사이의 값으로 표준화한다.
+
+상관계수만으로 관계를 판단하지 않고
+산점도를 함께 확인했다.
+
+또한 total_order_count와 paid_order_count처럼
+변수 생성 구조에서 서로 연결된 관계와
+실제 고객 행동에서 관찰할 가치가 있는 관계를 구분했다.
+
+### 주요 결과
+
+- total_order_count와 recency_days 상관계수: [실행 후 입력]
+- total_order_count와 active_period_days 상관계수: [실행 후 입력]
+- 기타 주요 관계: [실행 후 입력]
+
+### 결과 해석
+
+[실제 상관계수와 산점도를 확인한 뒤 직접 작성]
+
+높은 상관계수가 나타났다고 해서
+한 변수가 다른 변수의 원인이라고 판단하지 않았다.
+
+특히 total_order_count,
+paid_order_count,
+cancelled_order_count는 계산 구조상 서로 연결되어 있으므로
+높은 상관을 독립적인 고객 행동 인사이트로 해석하지 않았다.
+
+### 생성 파일
+
+- `notebooks/12_customer_order_correlation_analysis.ipynb`
+- `outputs/customer_order_covariance_matrix.csv`
+- `outputs/customer_order_correlation_matrix.csv`
+- `outputs/customer_order_pair_correlation_summary.csv`
+- `outputs/customer_order_count_correlation_bar.png`
+- `outputs/customer_order_count_vs_recency.png`
+- `outputs/customer_order_count_vs_active_period.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+공분산은 두 변수의 공동 움직임 방향을 보여주지만
+단위에 영향을 받는다.
+
+Pearson 상관계수는 공분산을 표준화하여
+변수 간 선형 관계의 방향과 정도를 비교할 수 있게 한다.
+
+그러나 상관계수가 높아도
+계산 구조, 제3의 변수, 역인과 등의 가능성이 있으므로
+인과관계로 해석해서는 안 된다.
+
+상관계수가 0에 가깝다는 것은
+모든 관계가 없다는 뜻이 아니라
+선형 관계가 약하다는 의미다.
+
+### 분석 한계
+
+현재 데이터는 고객 수가 많지 않은 가상 데이터이므로
+상관계수가 일부 고객의 값에 영향을 받을 수 있다.
+
+일부 변수는 동일한 주문 데이터에서 계산된 파생 변수이므로
+구조적 상관관계가 존재한다.
+
+또한 관찰 데이터이므로
+현재 분석만으로 인과관계를 판단할 수 없다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료

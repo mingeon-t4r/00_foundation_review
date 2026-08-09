@@ -378,6 +378,26 @@ VIP 등급의 인과효과를 증명하는 결과는 아닙니다.
 
 ---
 
+## Correlation Analysis
+
+고객 주문 데이터의 주요 수치형 변수 사이의 관계를
+공분산과 Pearson 상관계수를 이용해 분석했습니다.
+
+총 주문 수, 결제 주문 수, 취소 주문 수, 결제율,
+활동 기간, 평균 주문 간격, 최근 주문 경과일을 대상으로
+상관계수 행렬과 산점도를 확인했습니다.
+
+상관계수가 높더라도
+total_order_count와 paid_order_count처럼
+계산 구조 자체에서 연결되는 변수는
+독립적인 고객 행동 관계와 구분하여 해석했습니다.
+
+또한 현재 분석은 관찰 데이터의 연관성을 확인한 것이므로
+상관관계만으로 인과관계를 주장하지 않습니다.
+
+대표 시각화:
+
+![Total Order Count vs Recency](outputs/customer_order_count_vs_recency.png)
 
 ---
 
@@ -437,6 +457,16 @@ VIP 등급의 인과효과를 증명하는 결과는 아닙니다.
 - `outputs/customer_retention_probability_by_grade.png`
 - `outputs/customer_order_normal_comparison.png`
 
+### 상관관계 분석
+
+- `notebooks/12_customer_order_correlation_analysis.ipynb`
+- `outputs/customer_order_covariance_matrix.csv`
+- `outputs/customer_order_correlation_matrix.csv`
+- `outputs/customer_order_pair_correlation_summary.csv`
+- `outputs/customer_order_count_correlation_bar.png`
+- `outputs/customer_order_count_vs_recency.png`
+- `outputs/customer_order_count_vs_active_period.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -488,7 +518,7 @@ VIP 등급의 인과효과를 증명하는 결과는 아닙니다.
 | Window Function | ✅ 완료 |
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
-| Statistics | 🟡 기술통계·확률 학습 중 |
+| Statistics | 🟡 기술통계·확률·상관관계 학습 완료 / 추론통계 진행 예정 |
 | Machine Learning | 예정 |
 | Portfolio Project | 예정 |
 
