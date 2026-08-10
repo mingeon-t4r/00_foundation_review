@@ -401,6 +401,27 @@ total_order_count와 paid_order_count처럼
 
 ---
 
+## Sampling and Statistical Inference
+
+고객 주문 데이터를 이용하여 무작위 표본추출,
+표본분포, 중심극한정리, 표준오차와 신뢰구간을 학습했습니다.
+
+현재 30명의 가상 고객 데이터를 연습용 모집단으로 두고
+반복 표본추출을 수행하여 표본평균의 분포를 확인했습니다.
+
+표본 수가 증가할수록 평균 추정의 표준오차가 감소하는 것을
+확인하고, 평균 주문 수를 점추정값뿐 아니라
+95% 신뢰구간으로 표현했습니다.
+
+현재 데이터는 실제 모집단에서 무작위 추출된 표본이 아니므로
+계산된 신뢰구간을 실제 고객 모집단에 일반화하지 않습니다.
+
+대표 시각화:
+
+![Sampling Distribution](outputs/customer_order_sampling_distribution.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -467,6 +488,15 @@ total_order_count와 paid_order_count처럼
 - `outputs/customer_order_count_vs_recency.png`
 - `outputs/customer_order_count_vs_active_period.png`
 
+### 추론통계 분석
+
+- `notebooks/13_customer_order_sampling_inference.ipynb`
+- `outputs/customer_order_sample_means.csv`
+- `outputs/customer_order_standard_error_by_sample_size.csv`
+- `outputs/customer_order_inference_summary.csv`
+- `outputs/customer_order_sampling_distribution.png`
+- `outputs/customer_order_standard_error_by_sample_size.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -518,7 +548,7 @@ total_order_count와 paid_order_count처럼
 | Window Function | ✅ 완료 |
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
-| Statistics | 🟡 기술통계·확률·상관관계 학습 완료 / 추론통계 진행 예정 |
+| Statistics | 🟡 추론통계 학습 중 |
 | Machine Learning | 예정 |
 | Portfolio Project | 예정 |
 
