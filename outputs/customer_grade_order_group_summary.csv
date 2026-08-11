@@ -1,0 +1,3 @@
+group,customer_count,mean_order_count,std_order_count
+VIP,8,6.0,1.6903085094570331
+Non-VIP,22,2.5454545454545454,1.8702501163843026

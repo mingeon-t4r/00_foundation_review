@@ -422,6 +422,33 @@ total_order_count와 paid_order_count처럼
 
 ---
 
+## Hypothesis Testing Analysis
+
+VIP 고객과 Non-VIP 고객의 평균 주문 수를 비교하여
+관측된 차이가 표본 변동만으로 설명할 수 있는 수준인지
+Welch 독립표본 t검정으로 평가했습니다.
+
+가설검정에서는 두 집단의 평균이 같다는 귀무가설을 설정하고,
+p-value를 이용해 현재 데이터가 귀무가설과 얼마나
+양립 가능한지 확인했습니다.
+
+p-value만으로 결론을 내리지 않고
+각 그룹의 고객 수, 평균, 표준편차와 실제 평균 차이를
+함께 확인했습니다.
+
+현재 데이터는 학습용 가상 데이터이며
+실제 모집단에서 무작위 추출된 표본이 아니므로
+검정 결과를 실제 고객 모집단에 일반화하지 않습니다.
+
+또한 관찰된 평균 차이를
+VIP 등급의 인과효과로 해석하지 않습니다.
+
+대표 시각화:
+
+![VIP Order Comparison](outputs/customer_grade_order_mean_comparison.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -497,6 +524,13 @@ total_order_count와 paid_order_count처럼
 - `outputs/customer_order_sampling_distribution.png`
 - `outputs/customer_order_standard_error_by_sample_size.png`
 
+### 가설검정 분석
+
+- `notebooks/14_customer_order_hypothesis_test.ipynb`
+- `outputs/customer_grade_order_group_summary.csv`
+- `outputs/customer_grade_order_ttest_result.csv`
+- `outputs/customer_grade_order_mean_comparison.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -548,7 +582,7 @@ total_order_count와 paid_order_count처럼
 | Window Function | ✅ 완료 |
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
-| Statistics | 🟡 추론통계 학습 중 |
+| Statistics | 🟡 추론통계·t검정 학습 중 |
 | Machine Learning | 예정 |
 | Portfolio Project | 예정 |
 

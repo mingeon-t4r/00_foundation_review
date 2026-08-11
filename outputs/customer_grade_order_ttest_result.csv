@@ -1,0 +1,9 @@
+metric,value
+vip_count,8.0
+non_vip_count,22.0
+vip_mean,6.0
+non_vip_mean,2.5454545454545454
+mean_difference,3.4545454545454546
+t_statistic,4.808494199818816
+p_value,0.00029444473731175504
+alpha,0.05
