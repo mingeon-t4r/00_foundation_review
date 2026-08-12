@@ -448,6 +448,31 @@ VIP 등급의 인과효과로 해석하지 않습니다.
 ![VIP Order Comparison](outputs/customer_grade_order_mean_comparison.png)
 
 ---
+## Chi-Square Independence Analysis
+
+VIP 여부와 retention_priority 여부의 관계를
+카이제곱 독립성 검정으로 분석했습니다.
+
+두 범주형 변수의 교차표를 만들고,
+실제 관측빈도와 두 변수가 독립일 때 예상되는
+기대빈도를 비교했습니다.
+
+카이제곱 통계량과 p-value뿐 아니라
+기대빈도가 지나치게 작은 셀이 존재하는지도 확인하여
+검정의 적용 한계를 함께 검토했습니다.
+
+현재 데이터는 30명의 학습용 가상 고객 데이터이므로
+소규모 기대빈도가 존재하는 경우
+검정 결과를 강하게 일반화하지 않습니다.
+
+또한 VIP 여부와 retention 분류 사이의 연관성을
+인과관계로 해석하지 않습니다.
+
+대표 시각화:
+
+![VIP Retention Count](outputs/customer_vip_retention_count.png)
+
+---
 
 ## 주요 SQL 기술
 
@@ -531,6 +556,14 @@ VIP 등급의 인과효과로 해석하지 않습니다.
 - `outputs/customer_grade_order_ttest_result.csv`
 - `outputs/customer_grade_order_mean_comparison.png`
 
+### 카이제곱 독립성 분석
+
+- `notebooks/15_customer_categorical_independence_test.ipynb`
+- `outputs/customer_vip_retention_observed.csv`
+- `outputs/customer_vip_retention_expected.csv`
+- `outputs/customer_vip_retention_chi_square_result.csv`
+- `outputs/customer_vip_retention_count.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -582,8 +615,8 @@ VIP 등급의 인과효과로 해석하지 않습니다.
 | Window Function | ✅ 완료 |
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
-| Statistics | 🟡 추론통계·t검정 학습 중 |
-| Machine Learning | 예정 |
+| Statistics | 🟢 기술통계·추론통계 기초 완료 |
+| Machine Learning | ⚪ 학습 예정 |
 | Portfolio Project | 예정 |
 
 ---
