@@ -474,6 +474,33 @@ VIP 여부와 retention_priority 여부의 관계를
 
 ---
 
+## Machine Learning Foundation
+
+통계 기초 학습을 마친 뒤
+머신러닝 문제 설계 단계로 진행했습니다.
+
+회귀와 분류의 차이,
+Feature와 Target의 역할,
+데이터 누수와 Train/Test 분할의 원리를 학습했습니다.
+
+현재 customer_order_mini_project.csv의
+retention_priority는 실제 미래 결과가 아니라
+현재 주문 데이터를 이용해 만든 규칙 기반 분류입니다.
+
+따라서 total_order_count와 recency_days 등
+Target 정의에 사용된 변수를 다시 Feature로 사용하는 경우
+데이터 누수가 발생할 수 있음을 확인했습니다.
+
+현재 데이터는 고객 수가 적기 때문에
+모델 성능을 과장해서 평가하지 않고
+머신러닝 문제 설계와 데이터 분할 연습에 사용했습니다.
+
+대표 시각화:
+
+![ML Target Distribution](outputs/customer_ml_target_distribution.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -564,6 +591,14 @@ VIP 여부와 retention_priority 여부의 관계를
 - `outputs/customer_vip_retention_chi_square_result.csv`
 - `outputs/customer_vip_retention_count.png`
 
+### 머신러닝 기초
+
+- `notebooks/16_customer_ml_foundation.ipynb`
+- `outputs/customer_ml_feature_review.csv`
+- `outputs/customer_ml_split_summary.csv`
+- `outputs/customer_ml_baseline_summary.csv`
+- `outputs/customer_ml_target_distribution.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -616,7 +651,7 @@ VIP 여부와 retention_priority 여부의 관계를
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | ⚪ 학습 예정 |
+| Machine Learning | 🟡 문제 설계·Train/Test 분할 학습 완료 |
 | Portfolio Project | 예정 |
 
 ---

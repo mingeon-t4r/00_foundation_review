@@ -1,0 +1,16 @@
+column,review,reason
+customer_id,exclude,identifier
+customer_name,exclude,identifier
+grade,candidate,definition_and_timing_check_needed
+region,candidate,candidate_feature
+total_order_count,leakage,used_to_define_target
+paid_order_count,caution,strongly_related_to_total_order_count
+cancelled_order_count,candidate,candidate_feature
+paid_rate,candidate,candidate_feature
+active_period_days,candidate,candidate_feature
+avg_days_between_orders,candidate,candidate_feature
+recency_days,leakage,used_to_define_target
+activity_status,leakage,derived_from_recency_days
+order_count_rank,leakage,derived_from_total_order_count
+avg_customer_order_count,leakage,used_as_target_rule_threshold
+management_action,target,source_of_target

@@ -1233,6 +1233,122 @@ t검정은 수치형 변수의 평균을 비교하는 검정이고,
 
 ---
 
+## Day 27 - Customer Machine Learning Foundation
+
+### 학습 주제
+
+- 머신러닝 기초
+- 지도학습과 비지도학습
+- 회귀와 분류
+- Feature와 Target
+- X와 y
+- 예측 시점
+- 데이터 누수
+- Train/Test 데이터 분할
+- stratify
+- 기준선
+- 과적합 기초
+
+### 사용 데이터
+
+- `outputs/customer_order_mini_project.csv`
+
+### 학습 내용
+
+기술통계와 추론통계 이후
+새로운 관측값의 결과를 예측하는 머신러닝 단계에 진입했다.
+
+예측하려는 Target이 연속적인 숫자이면 회귀,
+범주이면 분류 문제라는 기준을 학습했다.
+
+머신러닝에서 예측에 사용하는 입력 변수를 Feature,
+예측해야 하는 정답을 Target이라고 하며
+Python에서는 일반적으로 X와 y로 표현한다.
+
+현재 retention_priority를 분류 Target으로 가정하고
+머신러닝 문제로 사용할 수 있는지 검토했다.
+
+retention_priority가 total_order_count,
+recency_days 등의 현재 주문 정보를 이용해 만든 규칙이라는 점에서
+이 변수들을 다시 Feature로 사용하는 경우
+데이터 누수가 발생할 수 있음을 확인했다.
+
+또한 train_test_split을 이용해
+데이터를 Train과 Test로 분리하고,
+stratify를 이용해 두 데이터의 Target 비율을
+가능한 비슷하게 유지했다.
+
+복잡한 모델을 만들기 전에
+다수 클래스를 항상 예측하는 단순 기준선도 계산했다.
+
+### 주요 결과
+
+- 전체 고객 수: 30
+- Train 고객 수: 22
+- Test 고객 수: 8
+- 전체 Retention 비율: 0.30
+- Train Retention 비율: 0.32
+- Test Retention 비율: 0.25
+- 기준선 정확도: 0.75
+
+### 결과 해석
+
+현재 데이터는 머신러닝 학습 구조를 이해하기 위한
+연습 데이터로는 사용할 수 있지만,
+실전 예측 모델의 성능을 평가하기에는 한계가 있다.
+
+고객 수가 적고 retention_priority가
+실제 미래 결과가 아니라 현재 데이터를 이용해 만든
+규칙 기반 Target이기 때문이다.
+
+따라서 모델 성능을 억지로 계산하지 않고
+Feature/Target 정의, 데이터 누수와 데이터 분할에 집중했다.
+
+### 생성 파일
+
+- `notebooks/16_customer_ml_foundation.ipynb`
+- `outputs/customer_ml_feature_review.csv`
+- `outputs/customer_ml_split_summary.csv`
+- `outputs/customer_ml_baseline_summary.csv`
+- `outputs/customer_ml_target_distribution.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+머신러닝은 모델 종류를 먼저 고르는 것이 아니라
+예측하려는 Target과 예측 시점을 먼저 정의해야 한다.
+
+Feature에는 실제 예측 시점에 사용할 수 있는 정보만 포함해야 하며,
+Target을 만드는 데 사용한 정보나 미래 정보를 포함하면
+데이터 누수가 발생한다.
+
+Train 데이터는 모델 학습에 사용하고,
+Test 데이터는 학습 과정에서 보지 않은 데이터의
+성능을 확인하는 데 사용한다.
+
+분류에서는 stratify를 이용해
+Train과 Test의 클래스 비율을 비슷하게 유지할 수 있다.
+
+또한 모델 성능은 반드시 단순한 기준선과 비교해야 한다.
+
+### 분석 한계
+
+현재 데이터는 고객 30명 수준의 학습용 가상 데이터다.
+
+retention_priority 역시 실제 미래 이탈 결과가 아닌
+규칙 기반 관리 분류이므로
+실전 머신러닝 Target으로 사용하기에는 한계가 있다.
+
+향후 실제 예측 모델을 만들려면
+더 많은 고객 데이터와 예측 시점 이후에 관측되는
+미래 Target이 필요하다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료

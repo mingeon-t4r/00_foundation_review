@@ -1,0 +1,4 @@
+dataset,row_count,retention_rate
+All,30,0.3
+Train,22,0.3181818181818182
+Test,8,0.25
