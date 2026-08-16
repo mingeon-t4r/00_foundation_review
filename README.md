@@ -501,6 +501,27 @@ Target 정의에 사용된 변수를 다시 Feature로 사용하는 경우
 
 ---
 
+## Linear Regression Analysis
+
+고객의 최근 행동 데이터를 이용하여
+향후 30일 매출을 예측하는 선형회귀 모델을 학습했습니다.
+
+500명의 가상 고객 데이터를 Train/Test로 분리하고,
+Train 평균을 사용하는 단순 Baseline과
+선형회귀 모델의 성능을 비교했습니다.
+
+회귀 모델은 MAE, RMSE, R²를 이용해 평가했으며,
+모델 점수뿐 아니라 회귀계수와 잔차를 함께 확인했습니다.
+
+회귀계수는 예측 관계를 나타낼 뿐
+인과효과로 해석하지 않습니다.
+
+대표 시각화:
+
+![Actual vs Predicted](outputs/customer_sales_actual_vs_predicted.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -599,6 +620,16 @@ Target 정의에 사용된 변수를 다시 Feature로 사용하는 경우
 - `outputs/customer_ml_baseline_summary.csv`
 - `outputs/customer_ml_target_distribution.png`
 
+### 선형회귀 분석
+
+- `data/raw/day28_customer_sales_regression.csv`
+- `notebooks/17_customer_sales_linear_regression.ipynb`
+- `outputs/customer_sales_regression_metrics.csv`
+- `outputs/customer_sales_regression_coefficients.csv`
+- `outputs/customer_sales_regression_predictions.csv`
+- `outputs/customer_sales_actual_vs_predicted.png`
+- `outputs/customer_sales_residual_plot.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -651,7 +682,7 @@ Target 정의에 사용된 변수를 다시 Feature로 사용하는 경우
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | 🟡 문제 설계·Train/Test 분할 학습 완료 |
+| Machine Learning | 🟡 선형회귀·회귀 평가 완료 / 분류 모델 학습 예정 |
 | Portfolio Project | 예정 |
 
 ---

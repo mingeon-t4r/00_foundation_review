@@ -1,0 +1,5 @@
+metric,value
+baseline_mae,43902.539136
+model_mae,29895.554334637553
+model_rmse,38314.37890047951
+model_r2,0.5438576027580646

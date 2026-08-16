@@ -1349,6 +1349,135 @@ retention_priority 역시 실제 미래 이탈 결과가 아닌
 
 ---
 
+## Day 28 - Customer Sales Linear Regression
+
+### 학습 주제
+
+- 회귀 문제
+- 선형회귀
+- Baseline
+- 모델 학습과 예측
+- MAE
+- RMSE
+- R²
+- 회귀계수
+- 실제값과 예측값 비교
+- 잔차 분석
+
+### 사용 데이터
+
+- `data/raw/day28_customer_sales_regression.csv`
+
+### 데이터 설명
+
+머신러닝 회귀 학습을 위해 생성한
+500명의 가상 고객 데이터다.
+
+고객의 예측 시점 이전 행동을 Feature로 사용하고
+향후 30일 매출을 Target으로 사용했다.
+
+Feature:
+
+- website_visits_30d
+- order_count_90d
+- membership_months
+- avg_discount_rate_90d
+
+Target:
+
+- next_30d_sales
+
+### 학습 내용
+
+고객의 최근 행동을 이용하여
+향후 30일 매출을 예측하는 선형회귀 모델을 학습했다.
+
+먼저 Train 데이터 평균을 모든 Test 고객에게 예측하는
+단순 평균 Baseline을 만들고 MAE를 계산했다.
+
+이후 LinearRegression 모델을 Train 데이터에 학습하고
+Test 데이터를 예측했다.
+
+모델 성능은 MAE, RMSE, R²를 이용해 평가하고
+Baseline MAE와 모델 MAE를 비교했다.
+
+또한 회귀계수를 확인하여 각 Feature가
+모델 예측값과 연결되는 방향을 해석했다.
+
+마지막으로 실제값과 예측값의 차이인 잔차를 계산하고
+잔차 그래프로 예측 오류 패턴을 확인했다.
+
+### 주요 결과
+
+- 전체 고객 수: 500
+- Train 고객 수: 375
+- Test 고객 수: 125
+- Baseline MAE: 43,903
+- Model MAE: 29,896
+- Model RMSE: 38,314
+- Model R²: 0.544
+
+### 결과 해석
+
+Model MAE < Baseline MAE 이므로 향후 예측에 정보를 제공중이다.
+
+선형회귀 모델의 MAE가 평균 Baseline보다 작다면
+고객 행동 Feature가 향후 매출 예측에
+일정한 정보를 제공하고 있다고 해석할 수 있다.
+
+RMSE는 MAE보다 큰 오차에 더 민감하므로
+두 값의 차이를 함께 확인했다.
+
+R²는 평균 예측과 비교한 모델의 설명 정도를 나타내며
+인과적 설명력을 의미하지 않는다.
+
+### 생성 파일
+
+- `notebooks/17_customer_sales_linear_regression.ipynb`
+- `outputs/customer_sales_regression_metrics.csv`
+- `outputs/customer_sales_regression_coefficients.csv`
+- `outputs/customer_sales_regression_predictions.csv`
+- `outputs/customer_sales_actual_vs_predicted.png`
+- `outputs/customer_sales_residual_plot.png`
+
+### 추가 데이터
+
+- `data/raw/day28_customer_sales_regression.csv`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+회귀 모델은 연속적인 숫자 Target을 예측한다.
+
+모델 성능을 평가할 때는 모델 자체의 점수만 보지 않고
+단순한 Baseline과 비교해야 한다.
+
+MAE는 평균적인 예측 오차를 Target의 원래 단위로 보여주고,
+RMSE는 큰 오차에 더 큰 벌점을 부여한다.
+
+R²는 평균 예측과 비교한 상대적인 모델 성능을 보여준다.
+
+회귀계수는 다른 Feature가 같다는 조건 아래
+입력값 변화와 모델 예측값의 관계를 나타내지만
+인과효과를 의미하지 않는다.
+
+### 분석 한계
+
+현재 데이터는 학습 목적으로 생성된 가상 데이터다.
+
+따라서 분석 결과와 회귀계수를
+실제 고객 행동에 일반화할 수 없다.
+
+실제 프로젝트에서는 시간 기준 데이터 분할,
+실제 미래 Target 정의, 데이터 누수 점검과
+추가 모델 검증이 필요하다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료
