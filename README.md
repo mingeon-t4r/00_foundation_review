@@ -522,6 +522,28 @@ Train 평균을 사용하는 단순 Baseline과
 
 ---
 
+## Logistic Regression Classification 
+
+가상 고객 데이터를 이용하여 
+**향후 30일 고객 이탈 여부를 예측하는 분류 문제**를 구성하고 
+Logistic Regression 모델을 학습했다.
+
+최근 30~90일의 로그인, 주문, 고객 문의, 결제 문제 등의 과거 행동 데이터를 Feature로 사용하고,
+향후 30일 이탈 여부인 `next_30d_churn`을 Target으로 설정했다.
+고객을 구분하기 위한 `customer_id`는 모델 Feature에서 제외했다.
+
+Train 데이터의 다수 클래스를 모든 고객에게 예측하는
+Baseline과 Logistic Regression을 비교하고,
+Accuracy뿐 아니라 Precision, Recall, F1 Score와 Confusion Matrix를 함께 확인했다.
+
+또한 예측확률에 적용하는 Threshold를 변경하여,
+이탈 고객을 더 많이 찾으려 할수록 Precision과 Recall 사이에 trade-off가 발생할 수 있음을 확인했다.
+
+이번 데이터는 머신러닝 학습을 위해 생성한 가상 데이터이며,
+모델에서 확인된 Feature와 이탈 여부의 관계를 인과관계로 해석하지 않는다.
+
+![Logistic Regression Classification Metrics](outputs/customer_churn_logistic_metric_comparison.png)
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -630,6 +652,15 @@ Train 평균을 사용하는 단순 Baseline과
 - `outputs/customer_sales_actual_vs_predicted.png`
 - `outputs/customer_sales_residual_plot.png`
 
+### 로지스틱 회귀 분류 분석
+
+- `data/raw/day29_customer_churn_classification.csv`
+- `notebooks/18_customer_churn_logistic_regression.ipynb`
+- `outputs/customer_churn_logistic_metrics.csv`
+- `outputs/customer_churn_logistic_confusion_matrix.csv`
+- `outputs/customer_churn_logistic_predictions.csv`
+- `outputs/customer_churn_logistic_metric_comparison.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -682,7 +713,7 @@ Train 평균을 사용하는 단순 Baseline과
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | 🟡 선형회귀·회귀 평가 완료 / 분류 모델 학습 예정 |
+| Machine Learning | 🟡 선형회귀·로지스틱 회귀 완료 / 의사결정나무 학습 예정 |
 | Portfolio Project | 예정 |
 
 ---

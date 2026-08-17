@@ -1478,6 +1478,92 @@ R²는 평균 예측과 비교한 상대적인 모델 성능을 보여준다.
 
 ---
 
+## Day 29 - Logistic Regression Classification
+
+### 학습 주제
+
+- Classification
+- Logistic Regression
+- Predicted Probability
+- Classification Baseline
+- Confusion Matrix
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Classification Threshold
+
+### 사용 데이터
+
+- `data/raw/day29_customer_churn_classification.csv`
+- 머신러닝 학습 목적으로 생성한 800명의 가상 고객 데이터
+- Target: `next_30d_churn`
+- 0: 향후 30일 이탈하지 않음
+- 1: 향후 30일 이탈
+
+### 학습 내용
+
+- 회귀와 분류 문제의 차이를 구분했다.
+- Logistic Regression을 이용하여 고객 이탈 여부를 예측했다.
+- `predict()`와 `predict_proba()`의 차이를 확인했다.
+- 다수 클래스를 이용한 Classification Baseline을 만들었다.
+- TP, TN, FP, FN을 이용하여 Confusion Matrix를 해석했다.
+- Accuracy, Precision, Recall, F1 Score를 계산하고 각 지표가 답하는 질문의 차이를 확인했다.
+- Classification Threshold를 변경했을 때 Precision과 Recall이 어떻게 달라지는지 확인했다.
+
+### 주요 결과
+
+- Baseline Accuracy: 0.600
+- Logistic Regression Accuracy: 0.725
+- Precision: 0.667
+- Recall: 0.625
+- F1 Score: 0.645
+- TN: 95
+- FP: 25
+- FN: 30
+- TP: 50
+
+### 결과 해석
+
+Logistic Regression이 단순 다수 클래스 Baseline보다 실제로 개선된 분류 성능을 보이는지 확인했다.
+
+분류 모델은 Accuracy만으로 평가할 수 없으며, 이탈 고객을 놓치는 비용과 잘못 이탈 고객으로 분류하는 비용을 고려해 Precision과 Recall을 함께 확인해야 한다.
+
+Threshold를 변경하면 이탈 후보로 분류되는 고객 수가 달라지고 Precision과 Recall 사이의 trade-off가 발생할 수 있음을 확인했다.
+
+### 생성 파일
+
+- `data/raw/day29_customer_churn_classification.csv`
+- `notebooks/18_customer_churn_logistic_regression.ipynb`
+- `outputs/customer_churn_logistic_metrics.csv`
+- `outputs/customer_churn_logistic_confusion_matrix.csv`
+- `outputs/customer_churn_logistic_predictions.csv`
+- `outputs/customer_churn_logistic_metric_comparison.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+- Logistic Regression은 바로 0과 1을 만드는 것이 아니라 클래스 확률을 계산하는 분류 모델이라는 점을 이해했다.
+- `predict()`와 `predict_proba()`는 서로 다른 정보를 제공한다.
+- Positive Class는 좋은 결과라는 뜻이 아니라 분석에서 관심 있는 사건을 의미한다.
+- Accuracy가 높더라도 실제 Positive Class를 제대로 찾지 못할 수 있다.
+- Precision과 Recall 중 어떤 지표가 중요한지는 업무 오류 비용에 따라 달라진다.
+- 모델은 단순 Baseline과 비교해야 한다.
+
+### 분석 한계
+
+이번 데이터는 머신러닝 학습을 위해 생성한 가상 데이터이므로 실제 고객 행동이나 실제 기업의 이탈률을 의미하지 않는다.
+
+모델의 Feature와 Target 사이의 관계는 예측 관계이며 인과관계로 해석할 수 없다.
+
+실제 이탈 프로젝트에서는 Target 정의, 관찰 기간, Feature 생성 시점, 데이터 누수, 클래스 불균형, 전처리와 운영 비용을 추가로 검토해야 한다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료
