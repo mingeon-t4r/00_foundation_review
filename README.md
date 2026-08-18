@@ -544,6 +544,29 @@ Accuracy뿐 아니라 Precision, Recall, F1 Score와 Confusion Matrix를 함께 
 
 ![Logistic Regression Classification Metrics](outputs/customer_churn_logistic_metric_comparison.png)
 
+---
+
+## Decision Tree Classification
+
+Day 29와 동일한 가상 고객 이탈 데이터를 이용하여
+Decision Tree 분류 모델을 학습하고 모델 복잡도와 과적합을 분석했다.
+
+깊이를 제한하지 않은 Decision Tree와 `max_depth`를 제한한 모델의
+Train/Test Accuracy를 비교하여,
+Train 데이터에 매우 높은 성능을 보이는 복잡한 모델이
+새로운 Test 데이터에서도 반드시 높은 성능을 보이는 것은 아님을 확인했다.
+
+또한 Tree 깊이를 단계적으로 변경하여
+모델 복잡도가 증가할 때 Train Accuracy와 Test Accuracy가
+어떻게 달라지는지 비교했다.
+
+이번 depth 비교는 과적합 개념을 학습하기 위한 실험이며,
+Test 데이터를 이용하여 최적의 하이퍼파라미터를 선정한 결과로 해석하지 않는다.
+
+![Decision Tree Train vs Test Accuracy](outputs/customer_churn_decision_tree_depth_comparison.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -661,6 +684,16 @@ Accuracy뿐 아니라 Precision, Recall, F1 Score와 Confusion Matrix를 함께 
 - `outputs/customer_churn_logistic_predictions.csv`
 - `outputs/customer_churn_logistic_metric_comparison.png`
 
+### 의사결정나무 분류 분석
+
+- `notebooks/19_customer_churn_decision_tree.ipynb`
+- `outputs/customer_churn_decision_tree_metrics.csv`
+- `outputs/customer_churn_decision_tree_confusion_matrix.csv`
+- `outputs/customer_churn_decision_tree_depth_comparison.csv`
+- `outputs/customer_churn_decision_tree_predictions.csv`
+- `outputs/customer_churn_decision_tree_depth_comparison.png`
+- `outputs/customer_churn_decision_tree_structure.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -713,7 +746,7 @@ Accuracy뿐 아니라 Precision, Recall, F1 Score와 Confusion Matrix를 함께 
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | 🟡 선형회귀·로지스틱 회귀 완료 / 의사결정나무 학습 예정 |
+| Machine Learning | 🟡 선형회귀·로지스틱 회귀·의사결정나무 완료 / 랜덤포레스트 학습 예정 |
 | Portfolio Project | 예정 |
 
 ---

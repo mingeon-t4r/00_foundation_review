@@ -1564,6 +1564,105 @@ Threshold를 변경하면 이탈 후보로 분류되는 고객 수가 달라지�
 
 ---
 
+## Day 30 - Decision Tree and Overfitting
+
+### 학습 주제
+
+- Decision Tree
+- Tree Split
+- Tree Depth
+- max_depth
+- Model Complexity
+- Underfitting
+- Overfitting
+- Train / Test Performance Comparison
+
+### 사용 데이터
+
+- `data/raw/day29_customer_churn_classification.csv`
+- Day 29 Logistic Regression과 동일한 800명의 가상 고객 데이터
+- Target: `next_30d_churn`
+- 0: 향후 30일 유지
+- 1: 향후 30일 이탈
+
+### 학습 내용
+
+- Decision Tree가 Feature에 조건을 적용하여 데이터를 반복적으로 분할하는 분류 모델임을 학습했다.
+- Day 29와 동일한 Feature, Target과 Train/Test 분할을 사용했다.
+- 깊이를 제한하지 않은 Decision Tree를 학습하고 Train Accuracy와 Test Accuracy를 비교했다.
+- Train 성능이 매우 높지만 Test 성능이 낮아질 수 있는 과적합 현상을 확인했다.
+- `max_depth`를 이용하여 Tree의 최대 깊이를 제한했다.
+- Tree 깊이를 1부터 12까지 변경하며 Train Accuracy와 Test Accuracy의 변화를 비교했다.
+- 모델 복잡도가 증가하면 Train 성능은 계속 좋아질 수 있지만 Test 성능까지 계속 좋아지는 것은 아님을 확인했다.
+- `plot_tree()`를 이용하여 Tree의 실제 분할 규칙을 시각적으로 확인했다.
+- Accuracy뿐 아니라 Precision, Recall, F1과 Confusion Matrix를 이용해 분류 오류를 함께 확인했다.
+
+### 주요 결과
+
+#### 제한 없는 Decision Tree
+
+- Train Accuracy: 1.000
+- Test Accuracy: 0.585
+
+#### max_depth=4 Decision Tree
+
+- Train Accuracy: 0.732
+- Test Accuracy: 0.605
+- Precision: 0.506
+- Recall: 0.500
+- F1 Score: 0.503
+
+#### Confusion Matrix
+
+- TN: 81
+- FP: 39
+- FN: 40
+- TP: 40
+
+### 결과 해석
+
+깊이를 제한하지 않은 Decision Tree는 Train 데이터에서 매우 높은 정확도를 보일 수 있지만 Test 데이터에서는 성능이 크게 낮아질 수 있음을 확인했다.
+
+Tree 깊이가 증가할수록 Train Accuracy는 전반적으로 증가했지만 Test Accuracy는 지속적으로 증가하지 않았다.
+
+따라서 모델을 복잡하게 만드는 것이 새로운 데이터에서의 성능 향상을 보장하지 않으며 Train과 Test 성능의 차이를 함께 확인해야 한다.
+
+### 생성 파일
+
+- `notebooks/19_customer_churn_decision_tree.ipynb`
+- `outputs/customer_churn_decision_tree_metrics.csv`
+- `outputs/customer_churn_decision_tree_confusion_matrix.csv`
+- `outputs/customer_churn_decision_tree_depth_comparison.csv`
+- `outputs/customer_churn_decision_tree_predictions.csv`
+- `outputs/customer_churn_decision_tree_depth_comparison.png`
+- `outputs/customer_churn_decision_tree_structure.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+- Decision Tree는 조건을 반복하여 데이터를 분할하는 방식으로 예측한다.
+- Train Accuracy가 매우 높다는 사실만으로 좋은 모델이라고 판단할 수 없다.
+- 모델 복잡도가 지나치게 높으면 Train 데이터에 과적합될 수 있다.
+- `max_depth`는 Decision Tree의 복잡도를 제한하는 중요한 하이퍼파라미터다.
+- 모델 평가는 Train 성능과 새로운 데이터에서의 Test 성능을 함께 확인해야 한다.
+- Test 데이터를 반복해서 확인하면서 모델을 선택하면 최종 평가 데이터의 의미가 약해질 수 있다.
+
+### 분석 한계
+
+이번 데이터는 머신러닝 학습을 위해 생성한 가상 데이터이므로 실제 고객 행동을 의미하지 않는다.
+
+이번 max_depth 비교는 과적합 개념을 이해하기 위한 교육용 실험이며 Test 데이터를 이용하여 최적의 하이퍼파라미터를 선정한 결과가 아니다.
+
+실제 모델 선택에서는 Validation 데이터나 Cross Validation을 이용한 별도의 검증 과정이 필요하다.
+
+Decision Tree의 분할에 특정 Feature가 사용됐다고 해서 해당 Feature가 고객 이탈의 인과적 원인이라는 의미는 아니다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료
