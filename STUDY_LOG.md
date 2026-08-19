@@ -1663,6 +1663,114 @@ Decision Tree의 분할에 특정 Feature가 사용됐다고 해서 해당 Featu
 
 ---
 
+## Day 31 - Random Forest and Feature Importance
+
+### 학습 주제
+
+- Random Forest
+- Ensemble
+- Multiple Decision Trees
+- Bootstrap
+- n_estimators
+- max_depth
+- Train / Test Performance
+- Overfitting
+- Feature Importance
+
+### 사용 데이터
+
+- `data/raw/day29_customer_churn_classification.csv`
+- Day 29~30과 동일한 800명의 가상 고객 데이터
+- Target: `next_30d_churn`
+- 0: 향후 30일 유지
+- 1: 향후 30일 이탈
+
+### 학습 내용
+
+- Random Forest가 여러 Decision Tree의 예측을 결합하는 Ensemble 모델임을 학습했다.
+- 각 Tree가 서로 다른 Bootstrap 표본과 일부 Feature를 이용하여 서로 다른 규칙을 학습한다는 원리를 이해했다.
+- `n_estimators`가 Random Forest에 포함되는 Decision Tree의 개수를 의미한다는 점을 학습했다.
+- 깊이를 제한하지 않은 Random Forest와 `max_depth=6` 모델의 Train/Test Accuracy를 비교했다.
+- Random Forest도 과적합이 완전히 사라지는 모델은 아니라는 점을 확인했다.
+- Accuracy, Precision, Recall, F1 Score와 Confusion Matrix를 이용해 분류 성능을 평가했다.
+- `predict_proba()`를 이용하여 고객별 이탈확률을 확인했다.
+- `feature_importances_`를 이용하여 Random Forest의 Feature Importance를 계산했다.
+- Feature Importance는 모델 내부의 상대적인 분할 기여도이며 인과관계나 영향 방향을 의미하지 않는다는 점을 확인했다.
+
+### 주요 결과
+
+#### 제한 없는 Random Forest
+
+- Train Accuracy: 1.000
+- Test Accuracy: 0.705
+
+#### max_depth=6 Random Forest
+
+- Train Accuracy: 0.837
+- Test Accuracy: 0.725
+- Precision: 0.667
+- Recall: 0.625
+- F1 Score: 0.645
+
+#### Confusion Matrix
+
+- TN: 95
+- FP: 25
+- FN: 30
+- TP: 50
+
+#### Feature Importance
+
+- 가장 높은 Feature: days_since_last_login
+- Importance: 0.391
+
+### 결과 해석
+
+Random Forest는 여러 Decision Tree를 결합하여 단일 Tree의 불안정성을 줄일 수 있는 Ensemble 모델임을 확인했다.
+
+깊이를 제한하지 않은 Random Forest에서도 Train 성능이 매우 높게 나타날 수 있으므로 Random Forest 역시 Train/Test 성능 차이를 이용해 과적합 여부를 점검해야 한다.
+
+개별 Tree의 깊이를 제한하면 Train 데이터를 지나치게 세밀하게 학습하는 정도를 줄일 수 있다.
+
+Feature Importance를 이용하여 모델 분류에 상대적으로 많이 활용된 Feature를 확인했지만, 이를 고객 이탈의 원인이나 영향 방향으로 해석하지 않았다.
+
+### 생성 파일
+
+- `notebooks/20_customer_churn_random_forest.ipynb`
+- `outputs/customer_churn_random_forest_metrics.csv`
+- `outputs/customer_churn_random_forest_confusion_matrix.csv`
+- `outputs/customer_churn_random_forest_predictions.csv`
+- `outputs/customer_churn_random_forest_feature_importance.csv`
+- `outputs/customer_churn_random_forest_train_test_comparison.png`
+- `outputs/customer_churn_random_forest_feature_importance.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+- Random Forest는 Decision Tree 여러 개를 결합하는 Ensemble 모델이다.
+- 여러 Tree가 서로 다른 데이터와 Feature를 학습함으로써 단일 Tree의 불안정성을 줄일 수 있다.
+- `n_estimators`는 Random Forest에 포함되는 Tree 수를 의미한다.
+- Random Forest라고 해도 Train 성능만 보고 모델을 평가해서는 안 된다.
+- Feature Importance는 모델이 Feature를 얼마나 활용했는지를 보여주지만 인과관계를 의미하지 않는다.
+- Feature Importance만으로 Feature와 Target 관계의 방향을 판단할 수 없다.
+- 더 복잡한 모델이 항상 더 높은 Test 성능을 보장하지 않는다.
+
+### 분석 한계
+
+이번 데이터는 머신러닝 학습을 위해 생성한 가상 데이터이므로 실제 고객 행동을 의미하지 않는다.
+
+Random Forest의 내장 Feature Importance는 Feature 특성에 따라 편향될 수 있으며 Feature의 절대적인 중요성을 의미하지 않는다.
+
+이번 실습은 Ensemble과 Feature Importance의 기본 원리를 학습하기 위한 과정이며 최종 모델 선택을 목적으로 하지 않는다.
+
+실제 모델 선택에서는 Validation 데이터 또는 Cross Validation과 추가적인 모델 비교가 필요하다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료

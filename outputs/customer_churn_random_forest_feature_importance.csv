@@ -1,0 +1,7 @@
+feature,importance
+days_since_last_login,0.391
+membership_months,0.169
+login_days_30d,0.166
+billing_issue_count_90d,0.104
+order_count_90d,0.102
+support_tickets_90d,0.069

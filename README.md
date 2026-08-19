@@ -567,6 +567,26 @@ Test 데이터를 이용하여 최적의 하이퍼파라미터를 선정한 결�
 
 ---
 
+## Random Forest Classification
+
+Day 29~30과 동일한 가상 고객 이탈 데이터를 이용하여
+여러 Decision Tree의 예측을 결합하는 Random Forest 분류 모델을 학습했다.
+
+깊이를 제한하지 않은 Random Forest와 `max_depth`를 제한한 모델의
+Train/Test Accuracy를 비교하여,
+Ensemble 모델에서도 Train과 Test 성능 차이를 이용한
+과적합 점검이 필요함을 확인했다.
+
+또한 Random Forest의 Feature Importance를 계산하여
+모델 분류 과정에서 상대적으로 많이 활용된 Feature를 확인했다.
+
+Feature Importance는 모델 내부의 상대적인 중요도를 나타내며,
+고객 이탈의 인과적 원인이나 Feature 영향의 방향을 의미하지 않는다.
+
+![Random Forest Feature Importance](outputs/customer_churn_random_forest_feature_importance.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -694,6 +714,16 @@ Test 데이터를 이용하여 최적의 하이퍼파라미터를 선정한 결�
 - `outputs/customer_churn_decision_tree_depth_comparison.png`
 - `outputs/customer_churn_decision_tree_structure.png`
 
+### 랜덤포레스트 분류 분석
+
+- `notebooks/20_customer_churn_random_forest.ipynb`
+- `outputs/customer_churn_random_forest_metrics.csv`
+- `outputs/customer_churn_random_forest_confusion_matrix.csv`
+- `outputs/customer_churn_random_forest_predictions.csv`
+- `outputs/customer_churn_random_forest_feature_importance.csv`
+- `outputs/customer_churn_random_forest_train_test_comparison.png`
+- `outputs/customer_churn_random_forest_feature_importance.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -746,7 +776,7 @@ Test 데이터를 이용하여 최적의 하이퍼파라미터를 선정한 결�
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | 🟡 선형회귀·로지스틱 회귀·의사결정나무 완료 / 랜덤포레스트 학습 예정 |
+| Machine Learning | 🟡 선형회귀·로지스틱 회귀·의사결정나무·랜덤포레스트 완료 / 분류 모델 비교 예정 |
 | Portfolio Project | 예정 |
 
 ---

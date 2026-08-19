@@ -1,0 +1,3 @@
+model,train_accuracy,test_accuracy
+unlimited_forest,1.0,0.705
+max_depth_6_forest,0.837,0.725
