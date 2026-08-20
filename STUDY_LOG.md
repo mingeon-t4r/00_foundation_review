@@ -1771,6 +1771,98 @@ Random Forest의 내장 Feature Importance는 Feature 특성에 따라 편향될
 
 ---
 
+## Day 32 - Classification Model Comparison
+
+### 학습 주제
+
+- Classification Model Comparison
+- Baseline
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Confusion Matrix
+- Model Complexity
+- Model Selection
+- Customer-Level Prediction Comparison
+
+### 사용 데이터
+
+- `data/raw/day29_customer_churn_classification.csv`
+- Day 29~31과 동일한 800명의 가상 고객 데이터
+- Target: `next_30d_churn`
+- 0: 향후 30일 유지
+- 1: 향후 30일 이탈
+
+### 학습 내용
+
+- 분류 모델을 공정하게 비교하기 위해 동일한 데이터, Feature, Target과 Train/Test 분할을 사용했다.
+- Majority Class Baseline, Logistic Regression, Decision Tree와 Random Forest를 동일한 평가 지표로 비교했다.
+- Accuracy뿐 아니라 Precision, Recall, F1 Score와 Confusion Matrix를 함께 확인했다.
+- Train Accuracy와 Test Accuracy를 함께 확인하여 모델 복잡도와 과적합 가능성을 비교했다.
+- 복잡한 모델이 단순한 모델보다 항상 더 높은 Test 성능을 보이지는 않는다는 점을 확인했다.
+- Logistic Regression과 Random Forest의 전체 평가 지표가 같더라도 고객별 예측이 서로 다를 수 있음을 확인했다.
+- 모델 선택에서는 성능뿐 아니라 설명 가능성, 복잡도와 업무 활용성을 함께 고려해야 한다는 점을 학습했다.
+- Test 데이터를 반복적으로 확인하면서 모델을 수정하면 Test 데이터의 최종 평가 역할이 약해질 수 있음을 확인했다.
+
+### 주요 결과
+
+| Model                 | Train Accuracy    | Test Accuracy | Precision | Recall| F1    |
+| Baseline              | 0.597             | 0.600         | 0.000     | 0.000 | 0.000 |
+| Logistic Regression   | 0.708             | 0.725         | 0.667     | 0.625 | 0.645 |
+| Decision Tree         | 0.732             | 0.605         | 0.506     | 0.500 | 0.503 |
+| Random Forest         | 0.837             | 0.725         | 0.667     | 0.625 | 0.645 |
+
+### 고객별 예측 비교
+
+- Logistic Regression과 Random Forest의 예측이 다른 고객 수: 28
+
+### 결과 해석
+
+Baseline은 일정 수준의 Accuracy를 보이지만 실제 이탈 고객을 탐지하지 못하므로 분류 모델의 비교 기준으로만 사용한다.
+
+Logistic Regression과 Random Forest의 주요 Test 평가 지표를 비교하고, 더 복잡한 모델이 반드시 더 높은 성능을 보이지는 않는다는 점을 확인했다.
+
+성능 차이가 크지 않거나 동일하다면 모델의 설명 가능성, 복잡도와 운영 편의성까지 고려하여 더 단순한 모델을 선택할 수 있다.
+
+전체 평가 지표가 동일하더라도 개별 고객에 대한 예측 결과는 다를 수 있으므로 실제 운영 대상까지 확인할 필요가 있다.
+
+### 생성 파일
+
+- `notebooks/21_customer_churn_model_comparison.ipynb`
+- `outputs/customer_churn_model_comparison_metrics.csv`
+- `outputs/customer_churn_model_confusion_summary.csv`
+- `outputs/customer_churn_model_predictions.csv`
+- `outputs/customer_churn_model_comparison.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+- 모델 비교는 동일한 데이터와 동일한 평가 조건에서 수행해야 한다.
+- Baseline은 복잡한 모델이 실제로 의미 있는 개선을 했는지 판단하는 기준이다.
+- Accuracy 하나만으로 분류 모델을 선택해서는 안 된다.
+- 복잡한 모델이 항상 더 높은 성능을 보장하지 않는다.
+- 성능이 비슷하면 설명 가능성과 운영 편의성을 함께 고려할 수 있다.
+- 같은 평가 지표를 가진 모델도 개별 고객 예측은 다를 수 있다.
+- Test 데이터는 최종 평가용이므로 반복적인 모델 선택에 사용해서는 안 된다.
+
+### 분석 한계
+
+이번 데이터는 머신러닝 학습을 위해 생성한 가상 데이터이므로 실제 고객 행동을 의미하지 않는다.
+
+Day 29~31 동안 Test 데이터를 반복적으로 확인했기 때문에 이번 모델 비교 결과를 실제 최종 일반화 성능이나 최종 모델 선택 결과로 해석할 수 없다.
+
+실제 모델 개발에서는 Validation 데이터 또는 Cross Validation을 이용해 모델과 하이퍼파라미터를 선택하고, Test 데이터는 최종 평가에 사용해야 한다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료

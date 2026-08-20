@@ -587,6 +587,33 @@ Feature Importance는 모델 내부의 상대적인 중요도를 나타내며,
 
 ---
 
+## Classification Model Comparison
+
+동일한 가상 고객 이탈 데이터를 이용하여
+Majority Class Baseline, Logistic Regression,
+Decision Tree와 Random Forest의 분류 성능을 비교했다.
+
+모든 모델에 동일한 Feature, Target과 Train/Test 분할을 사용하고
+Accuracy, Precision, Recall, F1 Score와 Confusion Matrix를
+동일한 기준으로 평가했다.
+
+이번 데이터에서는 Logistic Regression과 Random Forest가
+동일한 주요 Test 평가 지표를 보였으며,
+더 복잡한 모델이 반드시 더 높은 성능을 보장하지 않는다는 점을 확인했다.
+
+성능 차이가 작거나 동일한 경우에는
+모델의 복잡도, 설명 가능성과 운영 편의성을 함께 고려할 수 있다.
+
+또한 전체 평가 지표가 같더라도
+개별 고객에 대한 모델 예측은 서로 다를 수 있음을 확인했다.
+
+이번 비교에서는 기존 Test 데이터를 반복적으로 사용했으므로
+결과를 최종 모델 선택이나 실제 일반화 성능으로 해석하지 않는다.
+
+![Classification Model Comparison](outputs/customer_churn_model_comparison.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -724,6 +751,14 @@ Feature Importance는 모델 내부의 상대적인 중요도를 나타내며,
 - `outputs/customer_churn_random_forest_train_test_comparison.png`
 - `outputs/customer_churn_random_forest_feature_importance.png`
 
+### 분류 모델 비교
+
+- `notebooks/21_customer_churn_model_comparison.ipynb`
+- `outputs/customer_churn_model_comparison_metrics.csv`
+- `outputs/customer_churn_model_confusion_summary.csv`
+- `outputs/customer_churn_model_predictions.csv`
+- `outputs/customer_churn_model_comparison.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -776,7 +811,7 @@ Feature Importance는 모델 내부의 상대적인 중요도를 나타내며,
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | 🟡 선형회귀·로지스틱 회귀·의사결정나무·랜덤포레스트 완료 / 분류 모델 비교 예정 |
+| Machine Learning | 🟡 기초 회귀·분류 모델 및 모델 비교 완료 / 전처리·스케일링·Pipeline 학습 예정 |
 | Portfolio Project | 예정 |
 
 ---
