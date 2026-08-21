@@ -614,6 +614,25 @@ Accuracy, Precision, Recall, F1 Score와 Confusion Matrix를
 
 ---
 
+## Machine Learning Preprocessing
+
+결측값과 범주형 Feature가 포함된 가상 고객 데이터를 이용하여
+머신러닝 모델 학습 이전에 필요한 기본 전처리 과정을 학습했다.
+
+수치형 결측값은 Train 데이터의 중앙값,
+범주형 결측값은 Train 데이터의 최빈값을 기준으로 대체했다.
+
+범주형 Feature에는 One-Hot Encoding을 적용하고,
+수치형 Feature에는 StandardScaler를 적용했다.
+
+모든 전처리 규칙은 Train 데이터에서만 학습하고
+Test 데이터에는 동일한 규칙을 적용하여
+전처리 과정에서도 데이터 누수를 방지해야 함을 확인했다.
+
+![Missing Values by Feature](outputs/customer_churn_preprocessing_missing_values.png)
+
+---
+
 ## 주요 SQL 기술
 
 - `SELECT`, `WHERE`, `ORDER BY`
@@ -759,6 +778,17 @@ Accuracy, Precision, Recall, F1 Score와 Confusion Matrix를
 - `outputs/customer_churn_model_predictions.csv`
 - `outputs/customer_churn_model_comparison.png`
 
+### 머신러닝 전처리
+
+- `data/raw/day33_customer_churn_preprocessing.csv`
+- `notebooks/22_customer_churn_preprocessing.ipynb`
+- `outputs/customer_churn_preprocessing_missing_summary.csv`
+- `outputs/customer_churn_preprocessing_scale_check.csv`
+- `outputs/customer_churn_preprocessed_logistic_metrics.csv`
+- `outputs/customer_churn_preprocessed_logistic_confusion_matrix.csv`
+- `outputs/customer_churn_preprocessed_predictions.csv`
+- `outputs/customer_churn_preprocessing_missing_values.png`
+
 ### 분석 보고서
 
 - `notes/sql_customer_order_mini_project_report.md`
@@ -811,7 +841,7 @@ Accuracy, Precision, Recall, F1 Score와 Confusion Matrix를
 | SQL·Python 연동 | ✅ 완료 |
 | SQL Mini Project | ✅ 완료 |
 | Statistics | 🟢 기술통계·추론통계 기초 완료 |
-| Machine Learning | 🟡 기초 회귀·분류 모델 및 모델 비교 완료 / 전처리·스케일링·Pipeline 학습 예정 |
+| Machine Learning | 🟡 기초 모델 비교·결측치 처리·범주형 인코딩·스케일링 완료 / Pipeline 학습 예정 |
 | Portfolio Project | 예정 |
 
 ---

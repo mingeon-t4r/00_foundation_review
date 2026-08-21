@@ -1863,6 +1863,99 @@ Day 29~31 동안 Test 데이터를 반복적으로 확인했기 때문에 이번
 
 ---
 
+## Day 33 - Machine Learning Preprocessing
+
+### 학습 주제
+
+- Missing Values
+- Numeric / Categorical Features
+- SimpleImputer
+- One-Hot Encoding
+- StandardScaler
+- fit
+- transform
+- fit_transform
+- Data Leakage
+- Logistic Regression after Preprocessing
+
+### 사용 데이터
+
+- `data/raw/day33_customer_churn_preprocessing.csv`
+- 머신러닝 전처리 학습을 위해 생성한 1,000명의 가상 고객 데이터
+- 수치형 Feature와 범주형 Feature 포함
+- 일부 Feature에 결측값 포함
+- Target: `next_30d_churn`
+
+### 학습 내용
+
+- 머신러닝 모델에 입력하기 전에 결측값, 범주형 문자열과 서로 다른 수치 척도를 처리해야 할 수 있음을 확인했다.
+- 수치형 Feature와 범주형 Feature를 구분했다.
+- 수치형 결측값을 Train 데이터의 중앙값으로 대체했다.
+- 범주형 결측값을 Train 데이터의 최빈값으로 대체했다.
+- One-Hot Encoding을 이용하여 범주형 Feature를 모델이 사용할 수 있는 숫자 형태로 변환했다.
+- StandardScaler를 이용하여 수치형 Feature의 척도를 표준화했다.
+- `fit_transform()`과 `transform()`의 차이를 학습했다.
+- 전처리 규칙은 Train 데이터에서만 학습하고 Test 데이터에는 동일 규칙을 적용했다.
+- 전체 데이터에서 먼저 전처리를 수행할 경우 Test 정보가 학습 과정으로 유입되는 데이터 누수가 발생할 수 있음을 확인했다.
+- 수치형과 범주형 전처리 결과를 결합하여 Logistic Regression에 입력했다.
+
+### 주요 결과
+
+- 전체 고객 수: 1000
+- Train 고객 수: 750
+- Test 고객 수: 250
+- 전처리 후 Feature 수: 15
+- Accuracy: 0.764
+- Precision: 0.661
+- Recall: 0.500
+- F1 Score: 0.569
+
+### 결과 해석
+
+머신러닝 전처리는 모델 이전에 수행되는 단순 데이터 정리가 아니라 모델 학습 절차의 일부다.
+
+결측 대체값, 범주형 인코딩 규칙과 스케일링 기준을 Test 데이터에서 다시 학습하지 않고 Train 데이터에서 학습한 규칙을 그대로 적용해야 한다.
+
+StandardScaler는 Feature의 척도를 변경하지만 데이터를 정규분포로 만드는 것은 아니다.
+
+### 생성 파일
+
+- `data/raw/day33_customer_churn_preprocessing.csv`
+- `notebooks/22_customer_churn_preprocessing.ipynb`
+- `outputs/customer_churn_preprocessing_missing_summary.csv`
+- `outputs/customer_churn_preprocessing_scale_check.csv`
+- `outputs/customer_churn_preprocessed_logistic_metrics.csv`
+- `outputs/customer_churn_preprocessed_logistic_confusion_matrix.csv`
+- `outputs/customer_churn_preprocessed_predictions.csv`
+- `outputs/customer_churn_preprocessing_missing_values.png`
+
+### 수정 파일
+
+- `README.md`
+- `STUDY_LOG.md`
+
+### 배운 점
+
+- 전처리도 Train 데이터에서만 규칙을 학습해야 한다.
+- 수치형과 범주형 Feature는 서로 다른 전처리가 필요할 수 있다.
+- 결측값을 무조건 삭제하는 것이 정답은 아니다.
+- One-Hot Encoding은 순서가 없는 범주형 변수에 임의의 숫자 순서를 부여하는 문제를 피할 수 있다.
+- StandardScaler는 서로 다른 단위의 수치 Feature를 비슷한 척도로 변환한다.
+- `fit_transform()`은 규칙 학습과 변환을 함께 수행하고 `transform()`은 이미 학습한 규칙만 적용한다.
+- 전체 데이터에 먼저 전처리를 적용하면 데이터 누수가 발생할 수 있다.
+
+### 분석 한계
+
+이번 데이터는 머신러닝 학습을 위해 생성한 가상 데이터이므로 실제 고객 행동을 의미하지 않는다.
+
+중앙값과 최빈값 대체는 학습용 기준이며 실제 업무에서 항상 최적의 결측 처리 전략은 아니다.
+
+이번 실습에서는 전처리 과정을 이해하기 위해 수동으로 각 단계를 연결했다.
+
+실제 프로젝트에서는 Pipeline 등을 이용하여 전처리와 모델을 재현 가능한 형태로 연결할 필요가 있다.
+
+---
+
 # 프로젝트 진행 기록
 
 ## 현재 완료
